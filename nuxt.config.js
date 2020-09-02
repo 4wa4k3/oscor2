@@ -25,9 +25,10 @@ export default {
         content: process.env.npm_package_description || '',
       },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    link: [{ rel: 'preconnect', href:'https://fonts.gstatic.com', crossorigin:'crossorigin' }],
-    link: [{ rel:'stylesheet', href:'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&family=Oswald:wght@300;400;500&display=swap',  }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    { rel: 'stylesheet', href:'https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css' },
+    { rel: 'preconnect', href:'https://fonts.gstatic.com', crossorigin:'crossorigin' },
+    { rel:'stylesheet', href:'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&family=Oswald:wght@300;400;500&display=swap',  }],
   },
   /*
    ** Global CSS
@@ -56,12 +57,16 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/prismic'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
+  prismic: {
+    endpoint: 'https://oscor.cdn.prismic.io/api/v2',
+  },
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
