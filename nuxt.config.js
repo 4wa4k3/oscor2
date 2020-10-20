@@ -28,7 +28,7 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     { rel: 'stylesheet', href:'https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css' },
     { rel: 'preconnect', href:'https://fonts.gstatic.com', crossorigin:'crossorigin' },
-    { rel:'stylesheet', href:'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&family=Oswald:wght@300;400;500&display=swap',  }],
+    { rel:'stylesheet', href:'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&family=Oswald:wght@300;400;500&family=Roboto:wght@400;500;900&display=swap',  }],
   },
   /*
    ** Global CSS
@@ -57,7 +57,9 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/prismic'
+    '@nuxtjs/prismic',
+    'nuxt-i18n',
+
   ],
   /*
    ** Axios module configuration
@@ -66,12 +68,48 @@ export default {
   axios: {},
   prismic: {
     endpoint: 'https://oscor.cdn.prismic.io/api/v2',
+    linkResolver: '@/plugins/link-resolver',
+    preview: false
+
   },
+  i18n: {
+    lazy: true,
+      locales:[
+        {
+          code: 'en',
+          name: 'English',
+          iso: 'en-US',
+          file: 'en.js'
+        },
+        {
+          code: 'es',
+          name: 'Español',
+          iso: 'es-ES',
+          file: 'es.js'
+        },
+        {
+          code: 'de',
+          name: 'Deutsch',
+          iso: 'de-DE',
+          file: 'de.js' 
+
+        }
+      ],
+      defaultLocale: 'en',
+      langDir: 'locales/',
+      encodePaths: false,
+  },
+
   /*
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {
+
+    transpile: [
+      "gsap"
+    ],
+
     extend(config, ctx) {
       if(ctx.isDev && ctx.isClient) {
         config.module.rules.push({
