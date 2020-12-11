@@ -4,7 +4,7 @@
       <div class="landing-hero__video-wrapper">
         <video ref="vid" playsinline autoplay loop muted preload="auto">
           <source
-            src="https://player.vimeo.com/external/451134534.hd.mp4?s=8fb6c477936323f021e865c9e4f86b7e73fbfdf3&profile_id=169"
+            src="https://player.vimeo.com/external/463407664.hd.mp4?s=1229b514c313168e2317de55388ff23b170b0bc4&profile_id=175"
             type="video/mp4"
           />
         </video>

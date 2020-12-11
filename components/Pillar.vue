@@ -17,7 +17,14 @@
         class="hero-start-frame"
         :style="{ backgroundImage: `url(${pillar.image})` }"
       ></figure> -->
-      <video class="pillar-video" playsinline>
+      <video
+        class="pillar-video"
+        playsinline
+        autoplay
+        loop
+        muted
+        preload="auto"
+      >
         <source :src="pVid" type="video/mp4" />
       </video>
     </div>
@@ -51,9 +58,9 @@ export default {
   mounted() {
     const pVideo = document.querySelectorAll('.pillar-video')
     pVideo.forEach((pVid) => {
-      pVid.play()
-      pVid.autoplay = true
-      pVid.loop = true
+      // pVid.play()
+      // pVid.autoplay = true
+      // pVid.loop = true
       pVid.style.height = '540px'
       // pVid.style.position = 'absolute'
       // pVid.style.right = '0'
