@@ -10,7 +10,9 @@
           </template>
         </div>
         <div class="pillar-cta">
-          <a href="#">{{ $prismic.asText(pillar.section_link_text) }}</a>
+          <nuxt-link :to="localePath(`/${pillar.section_link.uid}`)">{{
+            $prismic.asText(pillar.section_link_text)
+          }}</nuxt-link>
         </div>
       </div>
       <!-- <figure

@@ -19,7 +19,7 @@ import TheHeader from '~/components/TheHeader'
 import TheFooter from '~/components/TheFooter'
 
 export default {
-  name: 'HomeLayout',
+  name: 'DivisionLightLayout',
   components: {
     TheNav,
     TheHeader,
@@ -27,7 +27,6 @@ export default {
   },
   data() {
     return {
-      // showNav: true,
       docs: [],
       menuLinks: [],
     }
@@ -36,12 +35,9 @@ export default {
     nav() {
       return this.$store.getters['navs/navActive']
     },
-    // getMenuBtn() {
-    //   return this.$store.getters[('menuBtn/changeShowLight', true)]
-    // },
   },
   created() {
-    this.$store.commit('menuBtn/changeShowLight', true)
+    this.$store.commit('menuBtn/changeShowLight', false)
   },
 }
 </script>

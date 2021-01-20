@@ -21,6 +21,9 @@ body {
   overflow-x:hidden;
 }
 
+.container {
+  background-color: $color_alt_white;
+}
 
 .landing-hero{
   overflow: hidden;
@@ -29,6 +32,7 @@ body {
 .landing-hero__video-wrapper{
   position: relative;
     height: 100vh;
+    background-color: rgba($color-grey-dark, 1);
 }
 
 

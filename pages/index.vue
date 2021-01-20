@@ -10,8 +10,8 @@
         </video>
       </div>
     </section>
-    <template v-for="p in pillar">
-      <Pillar :key="`pillar-${p.id}`" :pillar="p" />
+    <template v-for="(p, i) in pillar">
+      <Pillar :key="`pillar-${i}`" :pillar="p" />
     </template>
   </div>
 </template>

@@ -15,6 +15,7 @@
           :y1="line.y1"
           :x2="line.x2"
           :y2="line.y2"
+          :style="{ stroke: line.stroke }"
         />
       </g>
     </svg>
@@ -30,8 +31,16 @@ export default {
   computed: {
     ...mapGetters({
       nav: 'navs/navActive',
-      mBtn: 'navs/mBtn',
+      mBtn: 'menuBtn/getMenuBtn',
+      showLight: 'menuBtn/getShowLight',
     }),
+  },
+  created() {
+    if (this.showLight) {
+      this.$store.commit('menuBtn/changeMenuButtonColor', '#fff')
+    } else {
+      this.$store.commit('menuBtn/changeMenuButtonColor', '#7D7D80')
+    }
   },
   methods: {
     navOpen() {
@@ -40,11 +49,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.tLine,
-.cLine,
-.bLine {
-  stroke: white;
-}
-</style>

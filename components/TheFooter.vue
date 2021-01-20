@@ -14,6 +14,7 @@ export default {
       logo: {
         width: '1.9725in',
         height: '0.4275in',
+        color: '#fff',
       },
     }
   },

@@ -1,0 +1,24 @@
+.division {
+  &-content {
+
+    min-height: 70vh;
+
+    &-container{
+      padding: $unit*12 $unit*10 0 $unit*12;
+    }
+
+    &-hero {
+      margin-top: $unit*20.5;
+      & h1 {
+        font-size: $h2;
+        color: $color_grey;
+      }
+
+      & hr {
+        border: 0.4rem solid #EE3D42;
+        border-radius: .2rem;
+        width: 30em;
+      }
+    }
+  }
+}

@@ -8,9 +8,15 @@
     margin-left: $space*2;
   }
 
-  &__brand-container {
+  &-wrap {
     display: flex;
+    justify-content: space-between;
 
+  }
+
+  &__brand-container {
+    width: 30em;
+    display: flex;
 
     & button {
       -webkit-appearance: button;
@@ -57,6 +63,69 @@
       
     }
   }
+
+  &__cart-container{
+    width: 40em;
+    display: flex;
+    // justify-content: space-between;
+    justify-content: flex-end;
+    align-items: center;
+
+
+    & .langnav-content {
+      margin: 0 $unit*2 0 0;
+      display: flex;
+
+      &.dark {
+        & a {
+          color: $color_grey;
+          
+
+        &.nuxt-link-exact-active {
+          color: $color_white;
+          background-color: rgba($color_grey, .6);
+          }
+        }
+
+      }
+
+      &.light {
+        & a {
+          color: $color_white;
+          
+
+        &.nuxt-link-exact-active {
+          color: $color_red;
+          background-color: rgba($color_grey_darker, .6);
+          }
+        }
+
+      }
+
+      & a {
+        display: block;
+        margin: 0 $unit;
+        font-size: $font_base_size;
+        // color: $color_white;
+        padding: ($unit/2) ($unit);
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 3;
+        transition: color .3s ease-in-out;
+
+        &.nuxt-link-exact-active {
+          backdrop-filter: blur(2px);
+          border-radius: $unit;
+          // box-shadow: inset 1px 1px 14px 0px rgba(black, .3);
+        }
+
+        &:hover {
+          color: $color-red;
+        }
+      }
+    }
+  }
 }
 
 
@@ -78,4 +147,8 @@
   &.nav-open {
     transform: translateX(0);
   }
+}
+
+#Cart {
+  fill: $color_grey_light;
 }
