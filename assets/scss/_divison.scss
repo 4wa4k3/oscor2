@@ -20,5 +20,74 @@
         width: 30em;
       }
     }
+
+    &-intro {
+      height: 75vh;
+      max-width: $unit * 240;
+      margin: 0 auto;
+      
+      &-content {
+        margin-top: $unit*12.5;
+        position: relative;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+      &-title {
+        position: absolute;
+        bottom: 20em;
+        left: 10em;
+
+        & h1  {
+          font-size: $h4;
+          color: $color_white;
+          font-weight: 300;
+          width: $unit*12.5;
+        }
+
+
+      }
+
+      &-text {
+        width: 50%;
+        padding: 0 $unit*10 0 0;
+
+        & h2 {
+          color: $color_grey;
+        }
+
+        & hr {
+          border: 0.4rem solid #EE3D42;
+          border-radius: .2rem;
+          width: 30em;
+        }
+
+        & p {
+          margin-top: $unit*3;
+          font-size: $h5;
+        }
+
+        & a {
+          padding: .8em 1.6em;
+          display: inline-block;
+          margin-top: $unit*3;
+          color: #EE3D42;
+          font-size: 1.6rem;
+          text-decoration: none;
+          border: 0.1em solid #EE3D42;
+          transition: all .3s ease-in-out;
+          text-transform: uppercase;
+        }
+      }
+
+      &-svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
+      }
+    }
   }
 }

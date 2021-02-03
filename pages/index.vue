@@ -1,15 +1,6 @@
 <template>
   <div class="container">
-    <section class="landing-hero">
-      <div class="landing-hero__video-wrapper">
-        <video ref="vid" playsinline autoplay loop muted preload="auto">
-          <source
-            src="https://player.vimeo.com/external/463407664.hd.mp4?s=1229b514c313168e2317de55388ff23b170b0bc4&profile_id=175"
-            type="video/mp4"
-          />
-        </video>
-      </div>
-    </section>
+    <HeroVideo :video="docs.body[0].primary.video_link[0].text" />
     <template v-for="(p, i) in pillar">
       <Pillar :key="`pillar-${i}`" :pillar="p" />
     </template>
@@ -20,11 +11,13 @@
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Pillar from '~/components/Pillar'
+import HeroVideo from '~/components/HeroVideo'
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
   layout: 'home',
   components: {
+    HeroVideo,
     Pillar,
   },
   async asyncData({ $prismic, error, app }) {
@@ -92,17 +85,7 @@ export default {
       y: '50vw',
       ease: 'linear',
     })
-
-    this.heroVid()
-    window.addEventListener('resize', this.heroVid)
   },
-  methods: {
-    heroVid() {
-      const vid = this.$refs.vid
-      vid.style.cssText = `left:50%; min-height: 100%; min-width:100%; position:absolute; top:50%; transform:translate(-50%, -50%);`
-      const parentDiv = vid.parentNode
-      parentDiv.style.cssText = `position:relative; width:100%; height:${window.innerHeight}px;`
-    },
-  },
+  methods: {},
 }
 </script>

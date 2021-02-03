@@ -1,25 +1,30 @@
 <template>
   <div class="container">
-    <div class="division-content-container">
-      <section class="division-content-hero">
-        <div class="division-content-heading">
-          <h1>{{ $prismic.asText(pillar.title) }}</h1>
-          <hr />
-        </div>
-      </section>
-      <section class="division-content">
-        <ProductCards :cards="pillar.product_categories" />
+    <template v-if="video">
+      <HeroVideo v-if="video" :video="$prismic.asText(video)" />
+      <PageIntro :intro="intro" />
+    </template>
+    <div v-if="title" class="division-content-container">
+      <PageTitle :title="title" />
+      <section v-if="cards" class="division-content">
+        <ProductCards :cards="cards" />
       </section>
     </div>
   </div>
 </template>
 
 <script>
+import PageTitle from '~/components/PageTitle'
+import HeroVideo from '~/components/HeroVideo'
+import PageIntro from '~/components/PageIntro'
 import ProductCards from '~/components/ProductCards'
 export default {
   layout: 'DivisionLight',
   name: 'Division',
   components: {
+    PageTitle,
+    HeroVideo,
+    PageIntro,
     ProductCards,
   },
   async asyncData({ $prismic, params, error, app }) {
@@ -33,17 +38,47 @@ export default {
     if (doc) {
       return {
         docs: doc.data || doc,
-        pillar: doc.data,
       }
     } else {
       error({ statusCode: 404, message: 'Page not found' })
     }
   },
-  data() {
-    return {
-      docs: [],
-      pillar: [],
-    }
+  computed: {
+    title() {
+      const title = this.docs.body.find((t) => t.slice_type === 'title')
+      if (title) {
+        return title.primary.page_title
+      } else {
+        return false
+      }
+    },
+    video() {
+      const video = this.docs.body.find(
+        (vid) => vid.slice_type === 'hero_video'
+      )
+      if (video) {
+        return video.primary.video_link
+      } else {
+        return false
+      }
+    },
+    intro() {
+      const intro = this.docs.body.find((i) => i.slice_type === 'intro')
+      if (intro) {
+        return intro.primary
+      } else {
+        return false
+      }
+    },
+    cards() {
+      const cards = this.docs.body.find((card) => card.slice_type === 'cards')
+
+      if (cards) {
+        return cards.items
+      } else {
+        return false
+      }
+    },
   },
 }
 </script>
