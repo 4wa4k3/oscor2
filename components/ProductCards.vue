@@ -16,8 +16,19 @@
         ></div>
         <div class="product-cards-content-container-content">
           <h2>{{ $prismic.asText(card.name) }}</h2>
-          <div class="french-sizes-container"></div>
-          <nuxt-link to="#">{{ $prismic.asText(card.link_text) }}</nuxt-link>
+          <!-- <div class="french-sizes-container"></div> -->
+          <nuxt-link
+            :to="
+              localePath({
+                name: `division-category`,
+                params: {
+                  division: $route.params.division,
+                  category: card.link.uid,
+                },
+              })
+            "
+            >{{ $prismic.asText(card.link_text) }}</nuxt-link
+          >
         </div>
       </div>
     </template>
@@ -41,17 +52,27 @@ export default {
         const circle = elem.childNodes[0]
         const product = elem.childNodes[2]
         const content = elem.childNodes[4]
+        console.log(
+          elem.clientHeight + 32,
+          content.clientHeight,
+          content.children[0].clientHeight,
+          content.children[1].clientHeight
+        )
+
+        content.style.bottom = `-${content.children[1].clientHeight + 20}px`
 
         elem.addEventListener('mouseover', function (e) {
           circle.classList.add('over')
           product.classList.add('shrink')
           content.classList.add('slide-up')
+          content.style.bottom = `${0}px`
         })
 
         elem.addEventListener('mouseout', function (e) {
           circle.classList.remove('over')
           product.classList.remove('shrink')
           content.classList.remove('slide-up')
+          content.style.bottom = `-${content.children[1].clientHeight + 20}px`
         })
       })
     }

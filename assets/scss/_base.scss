@@ -21,9 +21,9 @@ body {
   overflow-x:hidden;
 }
 
-.container {
-  background-color: $color_alt_white;
-}
+// .container {
+//   background-color: $color_alt_white;
+// }
 
 .landing-hero{
   overflow: hidden;
@@ -56,6 +56,14 @@ body {
 #pillar2{background-color: $color_blue_dark;position: relative; overflow: hidden;}
 #pillar3{background-color: $color_blue_dark_alt;position: relative; overflow: hidden;}
 #pillar4{background-color: $color_blue_light_alt;position: relative; overflow: hidden;}
+
+// Alt
+
+// #pillar1{background-color: #c2bec3; position: relative; overflow: hidden;}
+// #pillar2{background-color: #122548;position: relative; overflow: hidden;}
+// #pillar3{background-color: #203386;position: relative; overflow: hidden;}
+// #pillar4{background-color: #a1c5cf;position: relative; overflow: hidden;}
+
 
 .serviceSvg, .services_content {
   position: absolute;
