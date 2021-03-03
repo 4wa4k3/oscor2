@@ -13,7 +13,10 @@
           :style="{ backgroundImage: `url(${card.primary.image.url})` }"
         ></div>
         <div class="product-cards-content-container-content">
-          <h2>{{ $prismic.asText(card.primary.product_name) }}</h2>
+          <h2
+            ref="title"
+            v-html="$prismic.asText(card.primary.product_name)"
+          ></h2>
           <h3>{{ $prismic.asText(card.primary.product_subtext) }}</h3>
           <div class="french-sizes-container">
             <template v-for="(fsize, index) in card.items">
@@ -59,11 +62,20 @@ export default {
     },
   },
   mounted() {
+    // Animate the cards
+
     if (this.$refs.cards) {
       this.$refs.cards.forEach(function (elem, index) {
         const circle = elem.childNodes[0]
         const product = elem.childNodes[2]
         const content = elem.childNodes[4]
+        const sup = content.getElementsByTagName('sup')
+
+        if (sup) {
+          sup.forEach((elem) => {
+            elem.style.fontSize = '1.8rem'
+          })
+        }
 
         content.style.bottom = `-${
           content.children[2].clientHeight +
@@ -76,8 +88,8 @@ export default {
           product.classList.add('shrink')
           content.classList.add('slide-up')
           content.style.bottom = `${0}px`
-          circle.style.background = 'radial-gradient(#323233, #7D7D80)'
-          circle.style.transition = 'background-color 0.3s'
+          // circle.style.background = 'radial-gradient(#323233, #7D7D80)'
+          // circle.style.transition = 'background-color 0.3s'
         })
 
         elem.addEventListener('mouseout', function (e) {
@@ -89,8 +101,8 @@ export default {
             content.children[3].clientHeight +
             6
           }px`
-          circle.style.background = 'radial-gradient(#fff, #fff)'
-          circle.style.transition = 'background-color 0.3s'
+          // circle.style.background = 'radial-gradient(#fff, #fff)'
+          // circle.style.transition = 'background-color 0.3s'
         })
       })
     }

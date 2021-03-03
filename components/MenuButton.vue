@@ -16,6 +16,7 @@
           :x2="line.x2"
           :y2="line.y2"
           :style="{ stroke: line.stroke }"
+          stroke-width="3"
         />
       </g>
     </svg>
@@ -39,7 +40,7 @@ export default {
     if (this.showLight) {
       this.$store.commit('menuBtn/changeMenuButtonColor', '#fff')
     } else {
-      this.$store.commit('menuBtn/changeMenuButtonColor', '#7D7D80')
+      this.$store.commit('menuBtn/changeMenuButtonColor', '#323233')
     }
   },
   methods: {

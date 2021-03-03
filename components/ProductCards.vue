@@ -52,12 +52,6 @@ export default {
         const circle = elem.childNodes[0]
         const product = elem.childNodes[2]
         const content = elem.childNodes[4]
-        console.log(
-          elem.clientHeight + 32,
-          content.clientHeight,
-          content.children[0].clientHeight,
-          content.children[1].clientHeight
-        )
 
         content.style.bottom = `-${content.children[1].clientHeight + 20}px`
 
