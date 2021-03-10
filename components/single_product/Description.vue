@@ -3,7 +3,7 @@
     class="single-description-container"
     :style="{ backgroundColor: description.primary.color }"
   >
-    <div class="single-description-content">
+    <div ref="description" class="single-description-content">
       <div
         class="single-description-image"
         :style="{ backgroundImage: `url(${description.primary.image.url})` }"
@@ -26,6 +26,11 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+if (process.client) {
+  gsap.registerPlugin(ScrollTrigger)
+}
 export default {
   name: 'SingleProductDescription',
   props: {
@@ -35,6 +40,28 @@ export default {
         return {}
       },
     },
+  },
+  mounted() {
+    // this.$nextTick(() => {
+    const description = this.$refs.description
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: description,
+        markers: false,
+        start: 'top 30%',
+        end: 'bottom 90%',
+      },
+    })
+    tl.from(description.children[0], {
+      x: -100,
+      opacity: 0,
+      duration: 1,
+    }).from(description.children[1], {
+      x: 100,
+      opacity: 0,
+      duration: 1,
+    })
+    // })
   },
 }
 </script>

@@ -14,6 +14,9 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'SingleProductPage',
   props: {
@@ -39,12 +42,27 @@ export default {
   mounted() {
     const title = this.$refs.title
     const sup = title.getElementsByTagName('sup')
-
+    const tl = gsap.timeline({})
+    const titleContainer = document.querySelector('.single-content-heading')
+    const imageContainer = document.querySelector(
+      '.single-content-image-container'
+    )
     if (sup) {
       sup.forEach((elem) => {
         elem.style.fontSize = '1.8rem'
       })
     }
+    tl.from(titleContainer, {
+      y: -100,
+      opacity: 0,
+      duration: 1,
+      ease: 'linear',
+    }).from(imageContainer, {
+      x: 100,
+      opacity: 0,
+      duration: 1,
+      ease: 'linear',
+    })
   },
 }
 </script>

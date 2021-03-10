@@ -4,7 +4,11 @@
       <Title :title="title" :image="image" :subtitle="subtitle" />
     </div>
     <Description :description="description" />
-    <Carousel :title="carousel.primary.title" :slides="carousel.items" />
+    <Carousel
+      v-if="carousel"
+      :title="carousel.primary.title"
+      :slides="carousel.items"
+    />
     <div class="division-content-container">
       <ProductTable :section-title="sectionTitle" :rows="rows" />
     </div>

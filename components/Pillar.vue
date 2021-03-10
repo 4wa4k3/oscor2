@@ -1,6 +1,6 @@
 <template>
   <section :id="`pillar${$prismic.asText(pillar.id)}`" class="pillar-container">
-    <div class="pillar-container-wrapper">
+    <div ref="pillar" class="pillar-container-wrapper">
       <div class="pillar-content">
         <div class="pillar-info">
           <h1>{{ $prismic.asText(pillar.section_title) }}</h1>
@@ -15,11 +15,8 @@
           }}</nuxt-link>
         </div>
       </div>
-      <!-- <figure
-        class="hero-start-frame"
-        :style="{ backgroundImage: `url(${pillar.image})` }"
-      ></figure> -->
       <video
+        ref="video"
         class="pillar-video"
         playsinline
         autoplay
@@ -34,6 +31,9 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'Pillar',
   props: {
@@ -58,14 +58,31 @@ export default {
   },
 
   mounted() {
-    const pVideo = document.querySelectorAll('.pillar-video')
-    pVideo.forEach((pVid) => {
-      // pVid.play()
-      // pVid.autoplay = true
-      // pVid.loop = true
-      pVid.style.height = '540px'
-      // pVid.style.position = 'absolute'
-      // pVid.style.right = '0'
+    // const pVideo = document.querySelectorAll('.pillar-video')
+    const video = this.$refs.video
+    const pillar = this.$refs.pillar
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: pillar,
+        markers: false,
+        start: 'top 60%',
+        end: 'bottom',
+      },
+    })
+
+    video.style.height = `540px`
+    // pVideo.forEach((pVid) => {
+    //   pVid.style.height = '540px'
+    // })
+
+    tl.from(pillar.children[0], {
+      x: 100,
+      opacity: 0,
+      duration: 1,
+    }).from(pillar.children[1], {
+      x: -100,
+      opacity: 0,
+      duration: 1,
     })
   },
 }

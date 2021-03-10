@@ -57,6 +57,11 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+if (process.client) {
+  gsap.registerPlugin(ScrollTrigger)
+}
 export default {
   name: 'Carousel',
   props: {
@@ -78,7 +83,7 @@ export default {
   },
   computed: {},
   mounted() {
-    // const container = this.$refs.container
+    const container = this.$refs.container
     const slider = this.$refs.mask
     const slidesCount = slider.children.length
     const slides = slider.children
@@ -150,6 +155,19 @@ export default {
       }
     }
     window.requestAnimationFrame(autoPlay)
+
+    this.$nextTick(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          markers: false,
+          start: 'top center',
+          end: 'bottom bottom',
+        },
+      })
+
+      tl.from(container.children[0], { y: -100, opacity: 0, duration: 1 })
+    })
   },
   methods: {},
 }

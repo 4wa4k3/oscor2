@@ -51,6 +51,9 @@
 </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'AltProductCards',
   props: {
@@ -63,9 +66,9 @@ export default {
   },
   mounted() {
     // Animate the cards
-
-    if (this.$refs.cards) {
-      this.$refs.cards.forEach(function (elem, index) {
+    const cards = this.$refs.cards
+    if (cards) {
+      cards.forEach(function (elem, index) {
         const circle = elem.childNodes[0]
         const product = elem.childNodes[2]
         const content = elem.childNodes[4]
@@ -106,6 +109,17 @@ export default {
         })
       })
     }
+
+    ScrollTrigger.batch(cards, {
+      onEnter: (batch) =>
+        gsap.from(batch, {
+          opacity: 0,
+          y: -100,
+          stagger: {
+            each: 0.15,
+          },
+        }),
+    })
   },
 }
 </script>

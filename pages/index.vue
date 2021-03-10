@@ -8,11 +8,8 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Pillar from '~/components/Pillar'
 import HeroVideo from '~/components/HeroVideo'
-gsap.registerPlugin(ScrollTrigger)
 
 export default {
   layout: 'home',
@@ -67,25 +64,7 @@ export default {
     }
   },
 
-  mounted() {
-    // const pillar = document.querySelector('.landing-pillar')
-    const tl = gsap.timeline({})
-    // console.log(document.querySelector('.landing-pillar div h1'))
-
-    tl.to(document.querySelector('.landing-pillar div h1'), {
-      scrollTrigger: {
-        trigger: document.querySelector('.landing-pillar div'),
-        markers: false,
-        start: 'top 75%',
-        bottom: 'bottom 25%',
-        scrub: 0.2,
-        toggleActions: 'restart pause reverse reset',
-      },
-      duration: 0.8,
-      y: '50vw',
-      ease: 'linear',
-    })
-  },
+  mounted() {},
   methods: {},
 }
 </script>
