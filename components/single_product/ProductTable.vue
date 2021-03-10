@@ -12,7 +12,7 @@
               <template v-for="(cell, index) in row.items">
                 <td :key="index">
                   <template v-if="cell.color">
-                    <span v-html="cell.color"></span>
+                    <client-only><span v-html="cell.color"></span></client-only>
                   </template>
                   {{ $prismic.asText(cell.cell) }}
                 </td>
