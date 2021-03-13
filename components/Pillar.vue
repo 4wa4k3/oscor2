@@ -1,7 +1,7 @@
 <template>
   <section :id="`pillar${$prismic.asText(pillar.id)}`" class="pillar-container">
     <div ref="pillar" class="pillar-container-wrapper">
-      <div class="pillar-content">
+      <div ref="content" class="pillar-content">
         <div class="pillar-info">
           <h1>{{ $prismic.asText(pillar.section_title) }}</h1>
           <hr />
@@ -60,6 +60,7 @@ export default {
   mounted() {
     // const pVideo = document.querySelectorAll('.pillar-video')
     const video = this.$refs.video
+    const content = this.$refs.content
     const pillar = this.$refs.pillar
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -67,6 +68,7 @@ export default {
         markers: false,
         start: 'top 60%',
         end: 'bottom',
+        stagger: { each: 0.5 },
       },
     })
 
@@ -75,12 +77,14 @@ export default {
     //   pVid.style.height = '540px'
     // })
 
-    tl.from(pillar.children[0], {
+    tl.from(content, {
       x: 100,
+      scale: 2,
       opacity: 0,
       duration: 1,
-    }).from(pillar.children[1], {
-      x: -100,
+    }).from(video, {
+      x: 100,
+      scale: 2,
       opacity: 0,
       duration: 1,
     })

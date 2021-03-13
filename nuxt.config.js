@@ -68,7 +68,9 @@ export default {
   axios: {},
   prismic: {
     endpoint: 'https://oscor.cdn.prismic.io/api/v2',
-    linkResolver: '@/plugins/link-resolver',
+    linkResolver: function(doc) {
+      return '/'
+    },
     preview: false
 
   },

@@ -133,6 +133,7 @@ export default {
     function nextSlide() {
       currentSlide = currentSlide >= slidesCount - 1 ? 0 : currentSlide + 1
       window.cancelAnimationFrame(autoPlay)
+      number = 0
       moveSlide()
     }
 

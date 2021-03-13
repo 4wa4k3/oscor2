@@ -198,6 +198,8 @@
 
       & img {
         width: 100%;
+        height: auto;
+        object-fit: cover;
       }
 
       &-text {
@@ -286,9 +288,12 @@
 
     &-container {
       min-height: 1080px;
+      padding-bottom: $unit*25;
     }
 
     &-title {
+
+      margin-bottom: $unit*8;
       & h2 {
         font-size: $h2;
         color: $color_grey;
@@ -302,13 +307,61 @@
     }
 
     &--table-container {
-      margin-top: $unit*4;
+
+
+      & h3 {
+        font-size: $h4;
+        margin: 0;
+        font-weight: 400;
+        background-color: $color_grey_light;
+        padding:($unit/5) $unit;
+        color: $color_grey_dark;
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: background-color .3s ease, color .3s ease;
+        &:hover {
+          background-color: darken($color_grey_light, 10%);
+          color: lighten($color_grey_dark, 10%);
+        }
+
+        & span {
+          transition: transform .3s ease-in-out;
+          &::after {
+            content: '+';
+          }
+        }
+      }
+    }
+
+    &--table-content {
+      transition: max-height 0.3s ease-out;
+      max-height: 0;
+      height: auto;
+      // transition: transform .3s ease-in-out;
+      // transform-origin: top;
+      
+      // &.active {
+      //   max-height: 100%;
+      // }
+
+      overflow: hidden;
+      & article {
+        padding:$unit*3 $unit $unit $unit*3;
+        & ul {
+          font-size: $font_base_size;
+          list-style-position: inside;
+          list-style: circle;
+          // padding-left: 0;
+        }
+      }
     }
 
     &--table {
       width: 100%;
       border-collapse: collapse;
       font-size: 1.8rem;
+      margin-top: $unit*2;
 
       & tr {
         border-bottom: .05em solid $color_grey_light;
@@ -316,6 +369,14 @@
         &:nth-child(even) {
           background: linear-gradient(to right, $color_alt_white, rgba($color_white, .35), $color_alt_white)
         }
+      }
+
+      & th {
+        text-align: left;
+        color: $color_grey;
+        font-weight: 700;
+        padding: $unit $unit;
+        text-transform: uppercase;
       }
       
       & td {

@@ -10,7 +10,11 @@
       :slides="carousel.items"
     />
     <div class="division-content-container">
-      <ProductTable :section-title="sectionTitle" :rows="rows" />
+      <ProductTable
+        :section-title="sectionTitle"
+        :rows="rows"
+        :tables="tables"
+      />
     </div>
   </div>
 </template>
@@ -95,6 +99,16 @@ export default {
       const sectionTitle = this.docs.section_name
       if (sectionTitle) {
         return sectionTitle
+      } else {
+        return false
+      }
+    },
+    tables() {
+      const tables = this.docs.body1.filter(
+        (el) => el.slice_type === 'table_head'
+      )
+      if (tables) {
+        return tables
       } else {
         return false
       }
