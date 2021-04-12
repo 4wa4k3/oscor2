@@ -23,7 +23,7 @@
               <div
                 :key="index"
                 class="french-size-container"
-                :style="{ backgroundColor: fsize.color }"
+                :data-french-size="fsize.color"
               >
                 <span class="french-size-text">
                   {{ $prismic.asText(fsize.french_size) }}
@@ -77,6 +77,7 @@ export default {
         if (sup) {
           sup.forEach((elem) => {
             elem.style.fontSize = '1.8rem'
+            elem.style.textDecoration = 'none'
           })
         }
 

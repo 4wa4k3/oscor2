@@ -22,7 +22,7 @@
               <template v-for="(row, idx) in rows">
                 <tr
                   v-if="
-                    $prismic.asText(row.primary.for) ===
+                    $prismic.asText(row.primary.for).toLowerCase() ===
                     $prismic.asText(table.primary.table_title).toLowerCase()
                   "
                   :key="idx"

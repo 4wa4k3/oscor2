@@ -35,9 +35,12 @@ export default {
       lang: currentLocale.iso.toLowerCase(),
     })
 
+    const search = await $prismic.predicates.fulltext('page', 'destino')
+
     if (doc) {
       return {
         docs: doc.data || doc,
+        search,
       }
     } else {
       error({ statusCode: 404, message: 'Page not found' })

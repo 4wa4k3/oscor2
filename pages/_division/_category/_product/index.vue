@@ -9,6 +9,10 @@
       :title="carousel.primary.title"
       :slides="carousel.items"
     />
+    <Video v-if="video" :link="video.primary.video_link" />
+    <div v-if="configurations" class="division-content-container">
+      <Configurations :configs="configurations" />
+    </div>
     <div class="division-content-container">
       <ProductTable
         :section-title="sectionTitle"
@@ -23,6 +27,8 @@
 import Title from '~/components/single_product/Title'
 import Description from '~/components/single_product/Description'
 import Carousel from '~/components/single_product/Carousel'
+import Video from '~/components/single_product/Video'
+import Configurations from '~/components/single_product/Configurations'
 import ProductTable from '~/components/single_product/ProductTable'
 export default {
   layout: 'DivisionLight',
@@ -31,6 +37,8 @@ export default {
     Title,
     Description,
     Carousel,
+    Video,
+    Configurations,
     ProductTable,
   },
   async asyncData({ $prismic, params, error, app }) {
@@ -91,6 +99,25 @@ export default {
       const carousel = this.docs.body.find((el) => el.slice_type === 'carousel')
       if (carousel) {
         return carousel
+      } else {
+        return false
+      }
+    },
+
+    video() {
+      const link = this.docs.body.find((el) => el.slice_type === 'video')
+      if (link) {
+        return link
+      } else {
+        return false
+      }
+    },
+    configurations() {
+      const configs = this.docs.body.filter(
+        (el) => el.slice_type === 'configurations'
+      )
+      if (configs) {
+        return configs
       } else {
         return false
       }

@@ -7,7 +7,7 @@
         <h2>{{ $prismic.asText(subtitle) }}</h2>
       </div>
       <div class="single-content-image-container">
-        <img :src="image.url" alt="" />
+        <img :src="image.url" :alt="$prismic.asText(title)" />
       </div>
     </div>
   </section>

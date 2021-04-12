@@ -21,7 +21,7 @@ export default {
       },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    { rel: 'stylesheet', href:'https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css' },
+    { rel: 'stylesheet', href:'https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.css' },
     { rel: 'preconnect', href:'https://fonts.gstatic.com', crossorigin:'crossorigin' },
     { rel:'stylesheet', href:'https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300&family=Oswald:wght@300;400;500&family=Roboto:wght@400;500;900&display=swap',  }],
   },
@@ -95,6 +95,7 @@ export default {
       defaultLocale: 'en',
       langDir: 'locales/',
       encodePaths: false,
+      parsePages: false,
   },
 
   /*

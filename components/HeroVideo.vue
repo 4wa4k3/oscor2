@@ -17,16 +17,17 @@ export default {
     },
   },
   mounted() {
-    this.heroVid()
-    window.addEventListener('resize', this.heroVid)
-  },
-  methods: {
-    heroVid() {
-      const vid = this.$refs.vid
+    const vid = this.$refs.vid
+    const parentDiv = vid.parentNode
+
+    function heroVid() {
       vid.style.cssText = `left:50%; min-height: 100%; min-width:100%; position:absolute; top:50%; transform:translate(-50%, -50%);`
-      const parentDiv = vid.parentNode
       parentDiv.style.cssText = `position:relative; width:100%; height:${window.innerHeight}px;`
-    },
+    }
+
+    heroVid()
+    window.addEventListener('resize', heroVid)
   },
+  methods: {},
 }
 </script>
