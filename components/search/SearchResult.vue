@@ -19,20 +19,47 @@
                 },
               })
             "
-            ><h2
-              v-html="$prismic.asText(result.data.product_name)"
-            ></h2></nuxt-link
-        ></template>
+            ><h2 v-html="$prismic.asText(result.data.product_name)"></h2
+          ></nuxt-link>
+        </template>
         <p>
           {{ $prismic.asText(result.data.body[0].primary.description1) }}
         </p>
       </div>
+      <!-- <div
+        v-if="result.type === 'single_component'"
+        :key="result.id"
+        ref="results"
+        class="search-result"
+      >
+        <template v-if="result.data.searchpath[0]">
+          <nuxt-link
+            v-if="
+              result.data.searchpath[0].division.uid === 'medical-components'
+            "
+            :to="
+              localePath({
+                name: 'division-category-component',
+                params: {
+                  division: result.data.searchpath[0].division.uid,
+                  category: result.data.searchpath[0].category.uid,
+                  component: result.uid,
+                },
+              })
+            "
+            ><h2 v-html="$prismic.asText(result.data.product_name)"></h2
+          ></nuxt-link>
+        </template>
+        <p>
+          {{ $prismic.asText(result.data.body[0].primary.description1) }}
+        </p>
+      </div> -->
     </template>
   </section>
 </template>
 
 <script>
-// import { gsap } from 'gsap'
+import { gsap } from 'gsap'
 // import { ScrollTrigger } from 'gsap/ScrollTrigger'
 export default {
   name: 'SearchResult',
@@ -46,8 +73,9 @@ export default {
   },
   mounted() {
     const results = this.$refs.results
-    // const targets = gsap.utils.toArray(results)
-    // const tl = gsap.timeline({})
+    const targets = gsap.utils.toArray(results)
+    const tl = gsap.timeline({})
+
     if (results) {
       results.forEach((result) => {
         const link = result.children[0]
@@ -62,13 +90,13 @@ export default {
       })
     }
 
-    // tl.from(targets, {
-    //   duration: 1,
-    //   ease: 'linear',
-    //   x: -100,
-    //   opacity: 0,
-    //   stagger: 0.3,
-    // })
+    tl.from(targets, {
+      duration: 1,
+      ease: 'linear',
+      x: -100,
+      opacity: 0,
+      stagger: 0.3,
+    })
   },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="side-nav">
+  <nav ref="nav" class="side-nav">
     <ul style="list-style: none">
       <li v-for="(links, i) in lvlOne" :key="`slice-${i}`">
         {{ links.primary.link_text }}
@@ -37,16 +37,17 @@ export default {
       return this.menuLinks.filter((lvl) => lvl.slice_type === '2nd_level')
     },
   },
-  mounted() {
-    this.navHeight()
-    window.addEventListener('resize', this.navHeight)
-  },
-  methods: {
-    navHeight() {
-      const nav = document.querySelector('nav')
 
-      nav.style.height = `${document.querySelector('body').clientHeight}px`
-    },
-  },
+  // mounted() {
+  //   this.navHeight()
+  //   window.addEventListener('resize', this.navHeight)
+  // },
+  // methods: {
+  //   navHeight() {
+  //     const nav = document.querySelector('nav')
+
+  //     nav.style.height = `${document.querySelector('body').clientHeight}px`
+  //   },
+  // },
 }
 </script>

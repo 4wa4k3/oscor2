@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <TheNav :class="{ 'nav-open': nav }" />
+  <div ref="wrap" class="wrap">
+    <TheNav ref="nav" :class="{ 'nav-open': nav }" />
     <TheHeader />
     <Nuxt />
     <TheFooter />

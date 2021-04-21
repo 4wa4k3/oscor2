@@ -30,7 +30,11 @@ export default {
     )[0]
     const searchResults = await $prismic.api.query(
       [
-        $prismic.predicates.at('document.type', 'single_product'),
+        $prismic.predicates.any('document.type', [
+          'single_product',
+          'single_component',
+        ]),
+        // $prismic.predicates.at('document.type', 'single_component'),
         // $prismic.predicates.at('document.type', 'product_category'),
         $prismic.predicates.fulltext('document', query.search),
       ],

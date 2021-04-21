@@ -21,6 +21,7 @@
           <div class="french-sizes-container">
             <template v-for="(fsize, index) in card.items">
               <div
+                v-if="fsize.color !== null"
                 :key="index"
                 class="french-size-container"
                 :data-french-size="fsize.color"
@@ -44,6 +45,20 @@
             "
             >{{ $prismic.asText(card.primary.link_text) }}</nuxt-link
           >
+          <!-- <nuxt-link
+            v-if="$route.params.division === 'medical-components'"
+            :to="
+              localePath({
+                name: `division-category-component`,
+                params: {
+                  division: $route.params.division,
+                  category: $route.params.category,
+                  component: card.primary.link.uid,
+                },
+              })
+            "
+            >{{ $prismic.asText(card.primary.link_text) }}</nuxt-link
+          > -->
         </div>
       </div>
     </template>
@@ -51,9 +66,9 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-gsap.registerPlugin(ScrollTrigger)
+// import { gsap } from 'gsap'
+// import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'AltProductCards',
   props: {
@@ -111,16 +126,16 @@ export default {
       })
     }
 
-    ScrollTrigger.batch(cards, {
-      onEnter: (batch) =>
-        gsap.from(batch, {
-          opacity: 0,
-          y: -100,
-          stagger: {
-            each: 0.15,
-          },
-        }),
-    })
+    // ScrollTrigger.batch(cards, {
+    //   onEnter: (batch) =>
+    //     gsap.from(batch, {
+    //       opacity: 0,
+    //       y: -100,
+    //       stagger: {
+    //         each: 0.15,
+    //       },
+    //     }),
+    // })
   },
 }
 </script>

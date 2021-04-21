@@ -12,7 +12,15 @@
       transform="translate(-73.293 -78.636)"
     />
   </svg> -->
-  <button id="cart-btn" :class="[showLight ? 'light' : 'dark']">cart</button>
+  <button
+    id="cart-btn"
+    class="snipcart-checkout"
+    :class="[showLight ? 'light' : 'dark']"
+  >
+    cart
+    <span class="snipcart-items-count"></span>
+    <!-- <span class="snipcart-total-price"></span> -->
+  </button>
 </template>
 
 <script>

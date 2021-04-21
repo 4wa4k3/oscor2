@@ -21,6 +21,10 @@ body {
   overflow-x:hidden;
 }
 
+.wrap {
+  position: relative;
+}
+
 .container {
   background-color: $color_alt_white;
 }

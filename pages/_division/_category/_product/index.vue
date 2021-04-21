@@ -1,25 +1,37 @@
 <template>
   <div class="container">
-    <div class="division-content-container">
-      <Title :title="title" :image="image" :subtitle="subtitle" />
-    </div>
-    <Description :description="description" />
-    <Carousel
-      v-if="carousel"
-      :title="carousel.primary.title"
-      :slides="carousel.items"
-    />
-    <Video v-if="video" :link="video.primary.video_link" />
-    <div v-if="configurations" class="division-content-container">
-      <Configurations :configs="configurations" />
-    </div>
-    <div class="division-content-container">
-      <ProductTable
-        :section-title="sectionTitle"
-        :rows="rows"
-        :tables="tables"
+    <template v-if="$route.params.division === 'finished-medical-devices'">
+      <div class="division-content-container">
+        <Title :title="title" :image="image" :subtitle="subtitle" />
+      </div>
+      <Description :description="description" />
+      <Carousel
+        v-if="carousel"
+        :title="carousel.primary.title"
+        :slides="carousel.items"
       />
-    </div>
+      <Video v-if="video" :link="video.primary.video_link" />
+      <div v-if="configurations" class="division-content-container">
+        <Configurations :configs="configurations" />
+      </div>
+      <div class="division-content-container">
+        <ProductTable
+          :section-title="sectionTitle"
+          :rows="rows"
+          :tables="tables"
+        />
+      </div>
+    </template>
+    <template v-if="$route.params.division === 'medical-components'">
+      <div class="division-content-container">
+        <CompTitle
+          :title="title"
+          :subtitle="subtitle"
+          :description="description"
+          :image="image"
+        />
+      </div>
+    </template>
   </div>
 </template>
 
@@ -30,6 +42,7 @@ import Carousel from '~/components/single_product/Carousel'
 import Video from '~/components/single_product/Video'
 import Configurations from '~/components/single_product/Configurations'
 import ProductTable from '~/components/single_product/ProductTable'
+import CompTitle from '~/components/single_component/CompTitle'
 export default {
   layout: 'DivisionLight',
   name: 'SingleProductPage',
@@ -40,6 +53,7 @@ export default {
     Video,
     Configurations,
     ProductTable,
+    CompTitle,
   },
   async asyncData({ $prismic, params, error, app }) {
     const currentLocale = app.i18n.locales.filter(
