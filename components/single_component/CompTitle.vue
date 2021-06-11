@@ -15,7 +15,7 @@
         <div class="single-component-quantity-container">
           <label for="quantity">Price (Units)</label>
           <select ref="quantity" name="quantity">
-            <option value="15">$200 15 Units</option>
+            <option value="15">$180 15 Units</option>
             <option value="250">$3000 250 Units</option>
             <option value="500">$6000 500 Units</option>
           </select>

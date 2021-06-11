@@ -96,6 +96,8 @@ export default {
       langDir: 'locales/',
       encodePaths: false,
       parsePages: false,
+      vueI18nLoader: true,
+      
   },
 
   /*

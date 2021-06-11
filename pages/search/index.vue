@@ -1,10 +1,23 @@
+<i18n>
+{
+  "en": {
+    "results": "Search Results For"
+  }, 
+  "es": {
+    "results": "Resultados de Búsqueda"
+  }, 
+  "de": {
+    "results": "Suchergebnisse für"
+  }
+}
+</i18n>
 <template>
   <div class="container">
     <div class="division-content-container">
       <section class="division-content-hero search-hero">
         <div class="division-content-heading search-heading">
           <h1>
-            Search Results For: <span>{{ searchTerm }}</span>
+            {{ $t('results') }}: <span>{{ searchTerm }}</span>
           </h1>
           <hr />
         </div>

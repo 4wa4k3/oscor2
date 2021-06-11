@@ -1,3 +1,19 @@
+<i18n>
+{
+  "en": {
+    "submit": "submit",
+    "search": "Search"
+  }, 
+  "es": {
+    "submit": "enviar",
+    "search": "Buscar"
+  }, 
+  "de": {
+    "submit": "senden",
+    "search": "Suche"
+  }
+}
+</i18n>
 <template>
   <div class="top-nav__search-bar">
     <form
@@ -11,9 +27,9 @@
         v-model="searchinput"
         type="search"
         name="search"
-        placeholder="Search"
+        :placeholder="$t('search')"
       />
-      <button type="submit">submit</button>
+      <button type="submit">{{ $t('submit') }}</button>
     </form>
   </div>
 </template>

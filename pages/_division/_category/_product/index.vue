@@ -16,6 +16,7 @@
       </div>
       <div class="division-content-container">
         <ProductTable
+          v-if="tables.length > 0"
           :section-title="sectionTitle"
           :rows="rows"
           :tables="tables"
@@ -148,6 +149,7 @@ export default {
       const tables = this.docs.body1.filter(
         (el) => el.slice_type === 'table_head'
       )
+      console.log(tables.length)
       if (tables) {
         return tables
       } else {

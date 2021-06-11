@@ -1,4 +1,4 @@
-.division {
+.division, .company {
   &-content {
 
     min-height: 70vh;
@@ -87,6 +87,80 @@
         left: 0;
       }
 
+      }
+    }
+
+    &-capabilities {
+      &-container {
+        max-width: $unit * 240;
+        margin: 0 auto;
+        padding: 9.6em 8em 0 9.6em;
+      }
+
+      &-title {
+        & h2 {
+          font-size: $h2;
+          color: $color_grey;
+        }
+  
+        & hr {
+          border: 0.4rem solid #EE3D42;
+          border-radius: .2rem;
+          width: 10.7em;
+        }
+      }
+
+      &-cards {
+        &-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          margin-top: $unit*8;
+        }
+
+        &-card {
+          text-decoration: none;
+
+          &__container {
+
+            width: 40em;
+            height: 40em;
+            position: relative;
+            
+            overflow: hidden;
+            margin-bottom: $unit*4;
+
+            & img {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              transition:transform .3s ease;
+
+              &:hover {
+                transform: scale(1.15);
+                transform-origin: center;
+              }
+            }
+
+            & h3 {
+              position: absolute;
+              width: 100%;
+              bottom: 0;
+              left: 0;
+              font-size: $font_base_size;
+              margin: 0;
+              font-weight: 400;
+              text-decoration: none;
+              color: $color_green;
+              text-align: center;
+              padding: $unit*2;
+              background-color: $color_blue_dark;
+              text-transform: uppercase;
+            }
+          }
+          
+        }
       }
     }
   }

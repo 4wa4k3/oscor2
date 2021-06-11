@@ -82,6 +82,19 @@
     }
   }
 
+  &-image-hero {
+    background: no-repeat;
+    // background: linear-gradient(0deg, $color_grey 0%, $color_alt_white 100%);
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: center;
+    filter: opacity(80%);
+    // backdrop-filter: greyscale(100%);
+    background-blend-mode: overlay;
+    // background-color: $color_grey;
+    
+  }
+
   &-description {
     &-container {
       width: 100%;

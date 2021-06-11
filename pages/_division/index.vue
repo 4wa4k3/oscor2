@@ -1,10 +1,36 @@
 <template>
   <div class="container">
-    <template v-if="video">
+    <template
+      v-if="
+        this.$route.params.division === 'contract-development-manufacturing'
+      "
+    >
       <HeroVideo v-if="video" :video="$prismic.asText(video)" />
       <PageIntro :intro="intro" />
+      <Capabilities :title="title" :cards="cards" />
     </template>
-    <div v-if="title" class="division-content-container">
+    <div
+      v-if="this.$route.params.division === 'finished-medical-devices'"
+      class="division-content-container"
+    >
+      <PageTitle :title="title" />
+      <section v-if="cards" class="division-content">
+        <ProductCards :cards="cards" />
+      </section>
+    </div>
+    <div
+      v-if="this.$route.params.division === 'prototype-development'"
+      class="division-content-container"
+    >
+      <PageTitle :title="title" />
+      <section v-if="cards" class="division-content">
+        <ProductCards :cards="cards" />
+      </section>
+    </div>
+    <div
+      v-if="this.$route.params.division === 'medical-components'"
+      class="division-content-container"
+    >
       <PageTitle :title="title" />
       <section v-if="cards" class="division-content">
         <ProductCards :cards="cards" />
@@ -18,6 +44,7 @@ import PageTitle from '~/components/PageTitle'
 import HeroVideo from '~/components/HeroVideo'
 import PageIntro from '~/components/PageIntro'
 import ProductCards from '~/components/ProductCards'
+import Capabilities from '~/components/oem/Capabilities'
 export default {
   layout: 'DivisionLight',
   name: 'Division',
@@ -26,6 +53,7 @@ export default {
     HeroVideo,
     PageIntro,
     ProductCards,
+    Capabilities,
   },
   async asyncData({ $prismic, params, error, app }) {
     const currentLocale = app.i18n.locales.filter(

@@ -1,3 +1,16 @@
+<i18n>
+{
+  "en": {
+    "cart": "cart"
+  }, 
+  "es": {
+    "cart": "carro"
+  }, 
+  "de": {
+    "cart": "wagen"
+  }
+}
+</i18n>
 <template>
   <!-- <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +30,7 @@
     class="snipcart-checkout"
     :class="[showLight ? 'light' : 'dark']"
   >
-    cart
+    {{ $t('cart') }}
     <span class="snipcart-items-count"></span>
     <!-- <span class="snipcart-total-price"></span> -->
   </button>

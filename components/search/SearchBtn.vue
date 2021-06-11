@@ -1,3 +1,17 @@
+<i18n>
+{
+  "en": {
+    "search": "search"
+  }, 
+  "es": {
+    "search": "Buscar"
+  }, 
+  "de": {
+    "search": "Suche"
+  }
+}
+</i18n>
+
 <template>
   <!-- <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +51,7 @@
     :class="[showLight ? 'light' : 'dark']"
     @click="searchOpen()"
   >
-    search
+    {{ $t('search') }}
   </button>
 </template>
 

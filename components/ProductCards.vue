@@ -45,7 +45,7 @@ export default {
     cards: {
       type: Array,
       default() {
-        return {}
+        return []
       },
     },
   },

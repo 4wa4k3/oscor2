@@ -26,17 +26,10 @@ export default {
       lang: currentLocale.iso.toLowerCase(),
     })
 
-    const test = await $prismic.api.query(
-      // $prismic.predicates.at('document.type', 'single_product'),
-      $prismic.predicates.fulltext('document', 'adelante'),
-      { lang: currentLocale.iso.toLowerCase() }
-    )
-
     if (doc) {
       return {
         docs: doc.data || doc,
         pillar: doc.data.section,
-        tests: test,
       }
     } else {
       error({ statusCode: 404, message: 'Page not found' })

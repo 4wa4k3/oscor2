@@ -1,10 +1,30 @@
 <template>
   <div class="container">
-    <div class="division-content-container">
+    <div
+      v-if="this.$route.params.division === 'finished-medical-devices'"
+      class="division-content-container"
+    >
       <PageTitle :title="title" />
       <section class="division-content">
         <AltProductCards :cards="cards" />
       </section>
+    </div>
+    <div
+      v-else-if="this.$route.params.division === 'medical-components'"
+      class="division-content-container"
+    >
+      <PageTitle :title="title" />
+      <section class="division-content">
+        <AltProductCards :cards="cards" />
+      </section>
+    </div>
+    <div
+      v-else-if="
+        this.$route.params.division === 'contract-development-manufacturing'
+      "
+      class="division-content-container"
+    >
+      <h1>{{ $prismic.asText(title) }}</h1>
     </div>
   </div>
 </template>
