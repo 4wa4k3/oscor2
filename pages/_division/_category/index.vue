@@ -22,9 +22,12 @@
       v-else-if="
         this.$route.params.division === 'contract-development-manufacturing'
       "
-      class="division-content-container"
     >
-      <h1>{{ $prismic.asText(title) }}</h1>
+      <CapabilityHeroImg :capabilities-img="capabilitiesImg" />
+      <section class="capabilities-content-container">
+        <CapabilityLinks :title="title[0].text" />
+        <CapabilityTitle :title="title" />
+      </section>
     </div>
   </div>
 </template>
@@ -32,12 +35,18 @@
 <script>
 import PageTitle from '~/components/PageTitle'
 import AltProductCards from '~/components/AltProductCards'
+import CapabilityTitle from '~/components/capability/CapabilityTitle'
+import CapabilityHeroImg from '~/components/capability/CapabilityHeroImg'
+import CapabilityLinks from '~/components/capability/CapabilityLinks'
 export default {
   layout: 'DivisionLight',
   name: 'Category',
   components: {
     PageTitle,
     AltProductCards,
+    CapabilityTitle,
+    CapabilityHeroImg,
+    CapabilityLinks,
   },
   async asyncData({ $prismic, params, error, app }) {
     const currentLocale = app.i18n.locales.filter(
@@ -73,6 +82,16 @@ export default {
 
       if (cards) {
         return cards
+      } else {
+        return false
+      }
+    },
+    capabilitiesImg() {
+      const capabilitiesImg = this.docs.body.find(
+        (el) => el.slice_type === 'capability'
+      )
+      if (capabilitiesImg) {
+        return capabilitiesImg.primary.image.url
       } else {
         return false
       }

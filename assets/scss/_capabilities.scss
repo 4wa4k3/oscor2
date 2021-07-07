@@ -1,0 +1,30 @@
+.capabilities {
+  &-hero {
+    width: 100%;
+    margin: 0 auto;
+    height: 0;
+    padding-bottom: calc(100%*6/16);
+    overflow: hidden;
+    position: relative;
+  }
+
+  &-content-container {
+    display: flex;
+  }
+
+  &-links {
+    background-color: $color_blue_dark;
+    max-width: 25em;
+    padding: $unit*2 $unit*4;
+
+    & a {
+      padding: $unit $unit*2;
+      width: 100%;
+      display: block;
+      font-size: $font_base_size;
+      color: $color_green;
+      text-decoration: none;
+      text-align: center;
+    }
+  }
+}
