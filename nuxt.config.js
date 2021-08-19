@@ -1,4 +1,7 @@
 export default {
+  server:{
+    host: '0'
+  },
   /*
    ** Nuxt target
    ** See https://nuxtjs.org/api/configuration-target

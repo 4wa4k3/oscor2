@@ -15,7 +15,7 @@
     "@nuxtjs/prismic": "^1.2.6",
     "gsap": "^3.6.1",
     "node-sass": "^4.14.1",
-    "nuxt": "^2.15.3",
+    "nuxt": "^2.15.7",
     "nuxt-i18n": "^6.22.3",
     "sass-loader": "^10.1.1"
   },

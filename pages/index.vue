@@ -4,12 +4,14 @@
     <template v-for="(p, i) in pillar">
       <Pillar :key="`pillar-${i}`" :pillar="p" />
     </template>
+    <NewsSection :news="newsArticles" :videos="videoCards" />
   </div>
 </template>
 
 <script>
 import Pillar from '~/components/Pillar'
 import HeroVideo from '~/components/HeroVideo'
+import NewsSection from '~/components/NewsSection'
 
 export default {
   layout: 'home',
@@ -17,6 +19,7 @@ export default {
   components: {
     HeroVideo,
     Pillar,
+    NewsSection,
   },
   async asyncData({ $prismic, error, app }) {
     const currentLocale = app.i18n.locales.filter(
@@ -26,9 +29,23 @@ export default {
       lang: currentLocale.iso.toLowerCase(),
     })
 
+    const news = await $prismic.api.query(
+      [
+        $prismic.predicates.at('document.type', 'news_article'),
+        $prismic.predicates.at('document.tags', ['new article']),
+      ],
+      {
+        orderings: '[document.last_publication_date desc]',
+        fetch: ['news_article.title', 'news_article.image'],
+        pageSize: 2,
+        lang: currentLocale.iso.toLowerCase(),
+      }
+    )
+
     if (doc) {
       return {
         docs: doc.data || doc,
+        news,
         pillar: doc.data.section,
       }
     } else {
@@ -63,6 +80,19 @@ export default {
         // },
       ],
     }
+  },
+  computed: {
+    newsArticles() {
+      const news = this.news.results
+      // const nA = news.filter((n) => n.data.image.url)
+      return news
+    },
+    videoCards() {
+      const videoCards = this.docs.body.filter(
+        (v) => v.slice_type === 'video_card'
+      )
+      return videoCards
+    },
   },
 
   mounted() {},

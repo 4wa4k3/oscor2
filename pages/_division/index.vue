@@ -111,5 +111,10 @@ export default {
       }
     },
   },
+  head({ $prismic }) {
+    return {
+      title: $prismic.asText(this.title),
+    }
+  },
 }
 </script>

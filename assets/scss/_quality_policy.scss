@@ -1,0 +1,13 @@
+.quality-policy {
+  &-text {
+    width: 60em;
+    margin-top: $unit*4;
+
+    & p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    padding-bottom: $unit*12;
+  }
+}

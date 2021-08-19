@@ -41,7 +41,6 @@ export default {
           lang: currentLocale.iso.toLowerCase(),
         }
       )
-      console.log(query.results[0].data.name[0].text)
       this.links = query.results
     } catch (e) {
       console.log(e)
@@ -55,7 +54,7 @@ export default {
   },
   computed: {
     capability() {
-      return this.links.filter((el) => el.data.name[0].text !== this.title)
+      return this.links
     },
   },
 }

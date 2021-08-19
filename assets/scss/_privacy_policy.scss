@@ -1,0 +1,27 @@
+.privacy-policy {
+  &-text {
+    width: 60em;
+    margin-top: $unit*4;
+
+    & h2 {
+      color: $color_grey;
+      font-size: $h3;
+    }
+
+    & h3 {
+      color: $color_grey;
+      font-size: $h4;
+    }
+
+    & p {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    & ul {
+      list-style: circle;
+    }
+    padding-bottom: $unit*12;
+  }
+}

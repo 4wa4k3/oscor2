@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <div class="quality-policy-content-container" style="min-height: 100vh">
-      <div class="quality-policy-content-hero">
+    <div class="privacy-policy-content-container">
+      <div class="privacy-policy-content-hero">
         <h1>{{ $prismic.asText(docs.title) }}</h1>
         <hr />
       </div>
-      <div class="quality-policy-container">
+      <div class="privacy-policy-container">
         <div
-          class="quality-policy-text"
+          class="privacy-policy-text"
           v-html="$prismic.asHtml(docs.text)"
         ></div>
       </div>
@@ -18,12 +18,12 @@
 <script>
 export default {
   layout: 'DivisionLight',
-  name: 'QualityPolicy',
+  name: 'PrivacyPolicy',
   async asyncData({ $prismic, error, app }) {
     const currentLocale = app.i18n.locales.filter(
       (lang) => lang.code === app.i18n.locale
     )[0]
-    const doc = await $prismic.api.getSingle('quality_policy', {
+    const doc = await $prismic.api.getSingle('privacy_policy', {
       lang: currentLocale.iso.toLowerCase(),
     })
 

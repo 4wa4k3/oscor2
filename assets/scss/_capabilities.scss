@@ -6,10 +6,36 @@
     padding-bottom: calc(100%*6/16);
     overflow: hidden;
     position: relative;
+
   }
 
   &-content-container {
     display: flex;
+  }
+
+  &-content-wrapper {
+    padding: $unit*12 $unit*10 0 $unit*12;
+
+    & h1 {
+      font-size: $h2;
+      color: $color_grey;
+    }
+
+    & hr {
+      border: 0.4rem solid #EE3D42;
+      border-radius: .2rem;
+      width: 10.7em;
+    }
+  }
+
+  &-description {
+    padding: $unit*4 $unit*4 $unit*4 0;
+    max-width: 70em;
+
+    & ul {
+      list-style: circle;
+      margin-bottom: $unit*2;
+    }
   }
 
   &-links {
@@ -25,6 +51,10 @@
       color: $color_green;
       text-decoration: none;
       text-align: center;
+
+      &.nuxt-link-exact-active {
+        background-color: lighten($color_blue_dark, 3);
+      }
     }
   }
 }

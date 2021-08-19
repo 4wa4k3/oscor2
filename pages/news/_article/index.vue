@@ -1,13 +1,12 @@
 <template>
   <div class="container">
-    <div class="quality-policy-content-container" style="min-height: 100vh">
-      <div class="quality-policy-content-hero">
+    <div class="news-content-container">
+      <div class="news-article-container">
+        <img :src="docs.image.url" alt="" />
         <h1>{{ $prismic.asText(docs.title) }}</h1>
         <hr />
-      </div>
-      <div class="quality-policy-container">
         <div
-          class="quality-policy-text"
+          class="news-article-content"
           v-html="$prismic.asHtml(docs.text)"
         ></div>
       </div>
@@ -17,13 +16,13 @@
 
 <script>
 export default {
+  name: 'NewsArticle',
   layout: 'DivisionLight',
-  name: 'QualityPolicy',
-  async asyncData({ $prismic, error, app }) {
+  async asyncData({ $prismic, params, error, app }) {
     const currentLocale = app.i18n.locales.filter(
       (lang) => lang.code === app.i18n.locale
     )[0]
-    const doc = await $prismic.api.getSingle('quality_policy', {
+    const doc = await $prismic.api.getByUID('news_article', params.article, {
       lang: currentLocale.iso.toLowerCase(),
     })
 
@@ -33,11 +32,6 @@ export default {
       }
     } else {
       error({ statusCode: 404, message: 'Page not found' })
-    }
-  },
-  data() {
-    return {
-      docs: [],
     }
   },
   head({ $prismic }) {

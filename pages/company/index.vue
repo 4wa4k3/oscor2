@@ -84,5 +84,10 @@ export default {
       }
     },
   },
+  head({ $prismic }) {
+    return {
+      title: $prismic.asText(this.docs.title),
+    }
+  },
 }
 </script>

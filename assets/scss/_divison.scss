@@ -1,10 +1,18 @@
-.division, .company {
+.division, .company, .news, .quality-policy, .privacy-policy {
   &-content {
 
     min-height: 70vh;
 
     &-container{
-      padding: $unit*12 $unit*10 0 $unit*12;
+      // padding: $unit*12 $unit*10 0 $unit*12;
+      padding-top: $unit*12;
+      padding-right: $unit*12;
+      padding-left: $unit*12;
+      padding-bottom: 0;
+
+      &.no-right-pad {
+        padding-right: 0;
+      }
     }
 
     &-hero {

@@ -9,7 +9,7 @@
         <AltProductCards :cards="cards" />
       </section>
     </div>
-    <div
+    <!-- <div
       v-else-if="this.$route.params.division === 'medical-components'"
       class="division-content-container"
     >
@@ -17,7 +17,7 @@
       <section class="division-content">
         <AltProductCards :cards="cards" />
       </section>
-    </div>
+    </div> -->
     <div
       v-else-if="
         this.$route.params.division === 'contract-development-manufacturing'
@@ -26,7 +26,7 @@
       <CapabilityHeroImg :capabilities-img="capabilitiesImg" />
       <section class="capabilities-content-container">
         <CapabilityLinks :title="title[0].text" />
-        <CapabilityTitle :title="title" />
+        <CapabilityTitle :title="title" :description="description" />
       </section>
     </div>
   </div>
@@ -34,7 +34,7 @@
 
 <script>
 import PageTitle from '~/components/PageTitle'
-import AltProductCards from '~/components/AltProductCards'
+// import AltProductCards from '~/components/AltProductCards'
 import CapabilityTitle from '~/components/capability/CapabilityTitle'
 import CapabilityHeroImg from '~/components/capability/CapabilityHeroImg'
 import CapabilityLinks from '~/components/capability/CapabilityLinks'
@@ -43,7 +43,7 @@ export default {
   name: 'Category',
   components: {
     PageTitle,
-    AltProductCards,
+    // AltProductCards,
     CapabilityTitle,
     CapabilityHeroImg,
     CapabilityLinks,
@@ -96,6 +96,15 @@ export default {
         return false
       }
     },
+    description() {
+      const description = this.cards[0].primary.description
+      return description
+    },
+  },
+  head({ $prismic }) {
+    return {
+      title: $prismic.asText(this.title),
+    }
   },
 }
 </script>

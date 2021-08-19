@@ -70,8 +70,8 @@
 
     &-image-container {
       // max-width: 80vw;
-      // width:50%;
-      height: 100%;
+      width:50%;
+      // height: 100%;
 
       & img {
         height: 100%;
@@ -178,8 +178,8 @@
       z-index: 100;
       & h2 {
         font-size: $h2;
-        color: $color_alt_white;
-        text-shadow: 0px 1px 3px $color_grey_dark;
+        color: $color_grey;
+        // text-shadow: 0px 1px 3px $color_grey_dark;
         text-transform: capitalize;
       }
 
@@ -222,15 +222,17 @@
 
       &-text {
         position: absolute;
-        top: $unit*20;
-        left: $unit*8;
-        width: 60em;
+        bottom: $unit;
+        left: 0;
+        width: 100%;
         
         margin-bottom: $unit*6;
          & p {
           font-size: $h4;
-          color: $color_alt_white;
-          text-shadow: 0px 1px 3px $color_grey_dark;
+          text-align: center;
+          color: $color_grey;
+          // text-shadow: 0px 1px 3px $color_grey_dark;
+          margin: 0;
          }
       }
     }

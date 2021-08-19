@@ -70,5 +70,10 @@ export default {
       return results
     },
   },
+  head() {
+    return {
+      title: 'Search',
+    }
+  },
 }
 </script>

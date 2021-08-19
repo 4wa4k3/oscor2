@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <template v-if="$route.params.division === 'finished-medical-devices'">
-      <div class="division-content-container">
+      <div
+        class="division-content-container"
+        :class="{ 'no-right-pad': docs.no_right_padding }"
+      >
         <Title :title="title" :image="image" :subtitle="subtitle" />
       </div>
       <Description :description="description" />
@@ -23,7 +26,7 @@
         />
       </div>
     </template>
-    <template v-if="$route.params.division === 'medical-components'">
+    <!-- <template v-if="$route.params.division === 'medical-components'">
       <div class="division-content-container">
         <CompTitle
           :title="title"
@@ -32,7 +35,7 @@
           :image="image"
         />
       </div>
-    </template>
+    </template> -->
   </div>
 </template>
 
@@ -43,7 +46,7 @@ import Carousel from '~/components/single_product/Carousel'
 import Video from '~/components/single_product/Video'
 import Configurations from '~/components/single_product/Configurations'
 import ProductTable from '~/components/single_product/ProductTable'
-import CompTitle from '~/components/single_component/CompTitle'
+// import CompTitle from '~/components/single_component/CompTitle'
 export default {
   layout: 'DivisionLight',
   name: 'SingleProductPage',
@@ -54,7 +57,7 @@ export default {
     Video,
     Configurations,
     ProductTable,
-    CompTitle,
+    // CompTitle,
   },
   async asyncData({ $prismic, params, error, app }) {
     const currentLocale = app.i18n.locales.filter(
@@ -164,6 +167,11 @@ export default {
         return false
       }
     },
+  },
+  head({ $prismic }) {
+    return {
+      title: $prismic.asText(this.title),
+    }
   },
 }
 </script>

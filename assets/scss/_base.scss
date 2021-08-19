@@ -23,6 +23,8 @@ body {
 
 .wrap {
   position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .container {
@@ -96,13 +98,6 @@ body::-webkit-scrollbar-thumb {
 
 body::-webkit-scrollbar-corner {
   background: rgba($color-grey-dark, .8); 
-}
-
-footer {
-  background-color: $color_grey_dark;
-  padding: $space $space*2 $space*2 $space*2;
-  width: 100%;
-  // height: $space*4;
 }
 
 .pillar {

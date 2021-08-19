@@ -88,12 +88,11 @@ export default {
         const product = elem.childNodes[2]
         const content = elem.childNodes[4]
         const sup = content.getElementsByTagName('sup')
-
         if (sup) {
-          sup.forEach((elem) => {
-            elem.style.fontSize = '1.8rem'
-            elem.style.textDecoration = 'none'
-          })
+          for (let i = 0; i < sup.length; i++) {
+            sup[i].style.fontSize = '1.8rem'
+            sup[i].style.textDecoration = 'none'
+          }
         }
 
         content.style.bottom = `-${

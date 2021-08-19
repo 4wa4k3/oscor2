@@ -97,9 +97,13 @@ export default {
     const shortcuts = this.$refs.shortcuts.children
 
     slider.style.width = `${100 * slidesCount}%`
-    slides.forEach((slide) => {
-      slide.style.width = `${100 / slidesCount}%`
-    })
+
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.width = `${100 / slidesCount}%`
+    }
+    // slides.forEach((slide) => {
+    //   slide.style.width = `${100 / slidesCount}%`
+    // })
 
     // shortcuts[0].style.classList.add('active')
 
@@ -108,25 +112,36 @@ export default {
         (-1 * currentSlide * 100) / slidesCount
       }%)`
 
-      shortcuts.forEach((shortcut, i) => {
-        shortcut.classList.remove('active')
-        // shortcut.addEventListener('click', () => {
-        //   currentSlide = i
-        //   moveSlide()
-        // })
-      })
+      // shortcuts.forEach((shortcut, i) => {
+      //   shortcut.classList.remove('active')
+      //   // shortcut.addEventListener('click', () => {
+      //   //   currentSlide = i
+      //   //   moveSlide()
+      //   // })
+      // })
+
+      for (let i = 0; i < shortcuts.length; i++) {
+        shortcuts[i].classList.remove('active')
+      }
 
       shortcuts[currentSlide].classList.add('active')
     }
 
     function linkShortcuts() {
-      shortcuts.forEach((shortcut, i) => {
-        shortcut.addEventListener('click', () => {
+      // shortcuts.forEach((shortcut, i) => {
+      //   shortcut.addEventListener('click', () => {
+      //     currentSlide = i
+      //     moveSlide()
+      //     window.cancelAnimationFrame(autoPlay)
+      //   })
+      // })
+      for (let i = 0; i < shortcuts.length; i++) {
+        shortcuts[i].addEventListener('click', () => {
           currentSlide = i
           moveSlide()
           window.cancelAnimationFrame(autoPlay)
         })
-      })
+      }
     }
     linkShortcuts()
 

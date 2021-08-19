@@ -48,9 +48,10 @@ export default {
       '.single-content-image-container'
     )
     if (sup) {
-      sup.forEach((elem) => {
-        elem.style.fontSize = '1.8rem'
-      })
+      for (let i = 0; i < sup.length; i++) {
+        sup[i].style.fontSize = '1.8rem'
+        sup[i].style.textDecoration = 'none'
+      }
     }
     tl.from(titleContainer, {
       y: -100,
