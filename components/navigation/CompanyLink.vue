@@ -7,6 +7,7 @@
           params: { company: comp.primary.nav_link.uid },
         })
       "
+      @click.native="navOpen"
       >{{ comp.primary.link_text }}</nuxt-link
     ><span
       v-if="comp.items[0].second_level_link_name[0]"

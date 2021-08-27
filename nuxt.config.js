@@ -36,7 +36,12 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: [
+    {
+      src: '@/plugins/analytics.js', 
+      mode: 'client'
+    }
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components

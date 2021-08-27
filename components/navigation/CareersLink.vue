@@ -7,6 +7,7 @@
           params: { careers: car.primary.nav_link.uid },
         })
       "
+      @click.native="navOpen"
       >{{ car.primary.link_text }}</nuxt-link
     ><span
       v-if="car.items[0].second_level_link_name[0]"
@@ -28,6 +29,7 @@
           :key="lvl2.second_lvl_link.type"
           :href="lvl2.second_lvl_link.url"
           target="_blank"
+          @click="navOpen"
           >{{ $prismic.asText(lvl2.second_level_link_name) }}</a
         >
       </template>

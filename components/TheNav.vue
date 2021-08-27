@@ -13,8 +13,8 @@
 </i18n>
 <template>
   <nav ref="nav" class="side-nav">
-    <button class="side-nav--menu-close-btn" @click="navOpen()">&times;</button>
-    <div class="side-nav--link" @click="navOpen()">
+    <button class="side-nav--menu-close-btn" @click="navOpen">&times;</button>
+    <div class="side-nav--link" @click="navOpen">
       <nuxt-link :to="localePath('/')">{{ $t('home') }}</nuxt-link>
     </div>
     <DivisionLink v-for="(lvl, i) in division" :key="i" :lvl="lvl" />
@@ -142,6 +142,7 @@ export default {
   },
   watch: {
     '$route.query': '$fetch',
+    '$store.commit': 'navs/navOpen',
   },
   methods: {
     navOpen() {

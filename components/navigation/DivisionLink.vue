@@ -7,6 +7,7 @@
           params: { division: lvl.primary.nav_link.uid },
         })
       "
+      @click.native="navOpen"
       >{{ lvl.primary.link_text }}</nuxt-link
     ><span
       v-if="lvl.items[0].second_level_link_name[0]"
@@ -35,6 +36,7 @@
               },
             })
           "
+          @click.native="navOpen"
           >{{ $prismic.asText(lvl2.second_level_link_name) }}</nuxt-link
         >
       </template>

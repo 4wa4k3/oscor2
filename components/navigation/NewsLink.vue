@@ -7,6 +7,7 @@
           params: { news: n.primary.nav_link.uid },
         })
       "
+      @click.native="navOpen"
       >{{ n.primary.link_text }}</nuxt-link
     ><span
       v-if="n.items[0].second_level_link_name[0]"
@@ -42,6 +43,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'NewsLink',
   props: {
@@ -50,6 +52,16 @@ export default {
       default() {
         return {}
       },
+    },
+  },
+  computed: {
+    ...mapGetters({
+      nav: 'navs/navActive',
+    }),
+  },
+  methods: {
+    navOpen() {
+      this.$store.commit('navs/navOpen')
     },
   },
 }

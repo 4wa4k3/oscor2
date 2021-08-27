@@ -3,6 +3,7 @@
     <TheNav ref="nav" :class="{ 'nav-open': nav }" />
     <TheHeader />
     <Nuxt />
+    <CookieAlert />
     <TheFooter />
     <!-- <div
       id="snipcart"
@@ -17,6 +18,7 @@
 import TheNav from '~/components/TheNav'
 import TheHeader from '~/components/TheHeader'
 import TheFooter from '~/components/TheFooter'
+import CookieAlert from '~/components/CookieAlert'
 
 export default {
   name: 'DivisionLightLayout',
@@ -24,6 +26,7 @@ export default {
     TheNav,
     TheHeader,
     TheFooter,
+    CookieAlert,
   },
   data() {
     return {
