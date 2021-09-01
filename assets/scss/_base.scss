@@ -58,10 +58,10 @@ body {
 }
 
 
-#pillar1{background-color: $color_grey_alt; position: relative; overflow: hidden;}
-#pillar2{background-color: $color_blue_dark;position: relative; overflow: hidden;}
-#pillar3{background-color: $color_blue_dark_alt;position: relative; overflow: hidden;}
-#pillar4{background-color: $color_blue_light_alt;position: relative; overflow: hidden;}
+// #pillar1{background-color: $color_grey_alt; position: relative; overflow: hidden;}
+// #pillar2{background-color: $color_blue_dark;position: relative; overflow: hidden;}
+// #pillar3{background-color: $color_blue_dark_alt;position: relative; overflow: hidden;}
+// #pillar4{background-color: $color_blue_light_alt;position: relative; overflow: hidden;}
 
 // Alt
 
@@ -180,6 +180,85 @@ body::-webkit-scrollbar-corner {
         background-color: $color-red;
         color: $color-white;
       }
+    }
+  }
+
+  &-renderer {
+    &-wrap {
+      width: 100%;
+      height: 0;
+      padding-bottom: calc(100% * 6/16);
+      overflow: hidden;
+      position: relative;
+    }
+    &-container {
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+
+    &-content {
+      position: absolute;
+      width: 55%;
+      height: 100%;
+      padding: $unit*4 $unit*8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      left: calc(100%/4);
+
+     &-title {
+      
+      & hr {
+        border: .4rem solid $color-red;
+        border-radius: .2rem;
+        width: 10.7em;
+      }
+  
+      & h2 {
+        color: $color-white;
+        font-size: $h2;
+        
+      }
+     }
+
+     &-cta-container {
+       margin: $unit*8 0 0 0;
+       height: auto;
+       width: 90%;
+       display: flex;
+       align-items: center;
+       justify-content: flex-end;
+
+       & a {
+        padding: .8em 1.6em;
+        color: $color-red;
+        font-size: 1.6rem;
+        text-decoration: none;
+        border: .1em solid $color-red;
+        transition: all .3s ease-in-out;
+        text-transform: uppercase;
+        margin-left: $unit*2;
+        display: inline-block;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+  
+        &:hover {
+          background-color: $color-red;
+          color: $color-white;
+        }
+      }
+     }
+    }
+
+    &-scene {
+      width: 100%;
+      height: 50%;
     }
   }
 

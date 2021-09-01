@@ -5,6 +5,7 @@
         ><HomeVideoCards
           :key="i"
           :videos-link="$prismic.asText(video.primary.video_link)"
+          :videos-poster="video.primary.video_poster.url"
       /></template>
       <div v-for="n in news" :key="n.id" class="news-front-section-card">
         <div class="news-front-section--inner-wrap">
@@ -61,6 +62,11 @@ export default {
         return []
       },
     },
+  },
+  head() {
+    return {
+      title: 'Oscor | Innovative Medical Device Solutions',
+    }
   },
 }
 </script>

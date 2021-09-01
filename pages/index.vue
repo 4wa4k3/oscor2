@@ -1,24 +1,33 @@
 <template>
   <div class="container">
     <HeroVideo :video="docs.body[0].primary.video_link[0].text" />
-    <template v-for="(p, i) in pillar">
+    <!-- <template v-for="(p, i) in pillar">
       <Pillar :key="`pillar-${i}`" :pillar="p" />
+    </template> -->
+    <template v-for="(p, i) in pillar">
+      <Scene
+        :key="i"
+        :pillar-info="pillar[i]"
+        :model-info="modelInfo.scene[i]"
+      />
     </template>
     <NewsSection :news="newsArticles" :videos="videoCards" />
   </div>
 </template>
 
 <script>
-import Pillar from '~/components/Pillar'
+// import Pillar from '~/components/Pillar'
 import HeroVideo from '~/components/HeroVideo'
 import NewsSection from '~/components/NewsSection'
+import Scene from '~/components/three/Scene'
 
 export default {
   layout: 'home',
   name: 'FrontPage',
   components: {
     HeroVideo,
-    Pillar,
+    Scene,
+    // Pillar,
     NewsSection,
   },
   async asyncData({ $prismic, error, app }) {
@@ -79,6 +88,22 @@ export default {
         //   image: '~static/images/0001.png',
         // },
       ],
+      modelInfo: {
+        scene: [
+          {
+            color: '#cac6ca',
+            file: 'gltf4/adelante.gltf',
+            rotationY: 0.65,
+            wireframe: false,
+          },
+          {
+            color: '#112b52',
+            file: 'gltf5/adelante.gltf',
+            rotationY: 2,
+            wireframe: true,
+          },
+        ],
+      },
     }
   },
   computed: {
