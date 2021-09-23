@@ -13,6 +13,11 @@
       &.no-right-pad {
         padding-right: 0;
       }
+
+      @media only screen and (max-width: $bp-500) {
+        padding: $unit*12 $unit*4 0 $unit*4;
+      }
+
     }
 
     &-hero {
@@ -23,14 +28,13 @@
       }
 
       & hr {
-        border: 0.4rem solid #EE3D42;
-        border-radius: .2rem;
-        width: 10.7em;
+        @include hr();
       }
     }
 
     &-intro {
-      height: 75vh;
+      min-height: 75vh;
+      height: 100%;
       max-width: $unit * 240;
       margin: 0 auto;
       
@@ -66,9 +70,7 @@
         }
 
         & hr {
-          border: 0.4rem solid #EE3D42;
-          border-radius: .2rem;
-          width: 30em;
+          @include hr();
         }
 
         & p {
@@ -102,7 +104,11 @@
       &-container {
         max-width: $unit * 240;
         margin: 0 auto;
-        padding: 9.6em 8em 0 9.6em;
+        padding: 9.6em 8em $unit*12.5 8em;
+
+        @media only screen and(max-width:$bp-600) {
+          padding: 9.6em $unit*4 $unit*12.5 $unit*4;
+        }
       }
 
       &-title {
@@ -112,9 +118,7 @@
         }
   
         & hr {
-          border: 0.4rem solid #EE3D42;
-          border-radius: .2rem;
-          width: 10.7em;
+          @include hr();
         }
       }
 
@@ -124,25 +128,51 @@
           flex-wrap: wrap;
           justify-content: space-evenly;
           margin-top: $unit*8;
+          width: 100%;
+          height: auto;
         }
 
         &-card {
           text-decoration: none;
+          min-width: 40em;
+          min-height: 40em;
+          // width: 100%;
+          // height: 100%;
+          display: block;
+          margin-bottom: $unit*4;
+
+
+          @media only screen and(max-width:$bp-1400) {
+           max-width: 45em;
+           max-height: 45em;
+          }
+
+          @media only screen and(max-width:$bp-800) {
+            min-width: 30em;
+            min-height: 30em;
+          }
+
+          @media only screen and(max-width:$bp-700) {
+            max-width: 50em;
+            max-height: 50em;
+            // height: fit-content;
+
+          }
 
           &__container {
-
-            width: 40em;
-            height: 40em;
+            width: 100%;
+            height:100%;
             position: relative;
-            
             overflow: hidden;
-            margin-bottom: $unit*4;
+            flex: 0 2 auto;
+
 
             & img {
               position: absolute;
               top: 0;
               left: 0;
               width: 100%;
+              height: 100%;
               transition:transform .3s ease;
 
               &:hover {
@@ -169,6 +199,119 @@
           }
           
         }
+      }
+    }
+  }
+}
+
+.oem-division-content{
+  &__intro-container {
+    // max-height: 100vh;
+    height: 100%;
+    max-width: $unit * 240;
+    margin: 0 auto;
+  }
+  &__intro-content {
+    // margin-top: $unit*12.5;
+    padding: $unit*12.5 8em 0 8em;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media only screen and(max-width:$bp-900) {
+      flex-wrap: wrap;
+      // justify-content: center;
+      padding: 0 4em 0 4em;
+    }
+  }
+
+  &__svg-container{
+    position: relative;
+    max-width: max-content;
+    height: 100%;
+    align-self: flex-end;
+
+    @media only screen and(max-width:$bp-900) {
+      max-width: 100%;
+      justify-self: flex-start;
+      margin-bottom: $unit*12;
+    }
+
+    @media only screen and (max-width:$bp-1300) {
+      align-self: center;
+    }
+
+    & svg {
+      width: 31.25em * 2;
+      height: 31.35em * 2;
+    }
+
+  }
+
+  // &__content-svg{
+  //   // position: absolute;
+  //   // bottom: 0;
+  //   // left: 0;
+  // }
+  &__intro-title{
+    position: absolute;
+    bottom:calc(100% / 4.5);
+    left: calc(100% / 12);
+
+    & h1  {
+      font-size: $h4;
+      color: $color_white;
+      font-weight: 300;
+      width: $unit*12.5;
+    }
+  }
+  &__intro-text{
+    max-width: 140ch;
+    width: 50%;
+    // padding: 0 $unit*10 0 0;
+
+    @media only screen and(max-width:$bp-900) {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    & h2 {
+      color: $color_grey;
+    }
+
+    & hr {
+      @include hr();
+    }
+
+    & p {
+      margin-top: $unit*3;
+      font-size: $h5;
+    }
+
+
+
+    &-cta {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      & a {
+        padding: .8em 1.6em;
+        display: inline-block;
+        margin-top: $unit*3;
+        color: #EE3D42;
+        font-size: 1.6rem;
+        text-decoration: none;
+        border: 0.1em solid #EE3D42;
+        transition: all .3s ease-in-out;
+        text-transform: uppercase;
+        width: max-content;
+        text-align: center;
+      }
+      @media only screen and(max-width:$bp-900) {
+        justify-content: center;
       }
     }
   }

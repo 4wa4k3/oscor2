@@ -1,7 +1,8 @@
 <template>
-  <nuxt-link :to="localePath('/')"
+  <nuxt-link class="top-nav__brand-container-logo-link" :to="localePath('/')"
     ><svg
       id="logo"
+      class="top-nav__brand-container-logo"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       :width="logo.width"

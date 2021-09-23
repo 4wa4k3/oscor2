@@ -7,8 +7,8 @@
     <div ref="mask" class="single-carousel-slides-container">
       <template v-for="(slide, i) in slides">
         <div :key="i" class="single-carousel-slide">
-          <img :src="slide.slide.url" alt="" />
-          <div class="single-carousel-slide-text">
+          <img :src="slide.slide.url" :alt="slide.slide.alt" />
+          <div ref="slideText" class="single-carousel-slide-text">
             <p>{{ $prismic.asText(slide.slide_text) }}</p>
           </div>
         </div>
@@ -95,30 +95,32 @@ export default {
     const fps = 1
     const duration = 8000
     const shortcuts = this.$refs.shortcuts.children
+    const bp500 = window.matchMedia(`(max-width:${500 / 16}em)`)
 
     slider.style.width = `${100 * slidesCount}%`
 
     for (let i = 0; i < slides.length; i++) {
       slides[i].style.width = `${100 / slidesCount}%`
     }
-    // slides.forEach((slide) => {
-    //   slide.style.width = `${100 / slidesCount}%`
-    // })
-
-    // shortcuts[0].style.classList.add('active')
 
     function moveSlide() {
-      slider.style.transform = `translate(${
-        (-1 * currentSlide * 100) / slidesCount
-      }%)`
+      if (bp500.matches) {
+        slider.style.transform = 'unset'
+      } else {
+        slider.style.transform = `translate(${
+          (-1 * currentSlide * 100) / slidesCount
+        }%)`
+      }
 
-      // shortcuts.forEach((shortcut, i) => {
-      //   shortcut.classList.remove('active')
-      //   // shortcut.addEventListener('click', () => {
-      //   //   currentSlide = i
-      //   //   moveSlide()
-      //   // })
-      // })
+      window.addEventListener('resize', () => {
+        if (bp500.matches) {
+          slider.style.transform = 'unset'
+        } else {
+          slider.style.transform = `translate(${
+            (-1 * currentSlide * 100) / slidesCount
+          }%)`
+        }
+      })
 
       for (let i = 0; i < shortcuts.length; i++) {
         shortcuts[i].classList.remove('active')
@@ -128,13 +130,6 @@ export default {
     }
 
     function linkShortcuts() {
-      // shortcuts.forEach((shortcut, i) => {
-      //   shortcut.addEventListener('click', () => {
-      //     currentSlide = i
-      //     moveSlide()
-      //     window.cancelAnimationFrame(autoPlay)
-      //   })
-      // })
       for (let i = 0; i < shortcuts.length; i++) {
         shortcuts[i].addEventListener('click', () => {
           currentSlide = i

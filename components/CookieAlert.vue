@@ -1,8 +1,8 @@
 <template>
   <div v-if="$store.getters['gdpr/isOpen']" class="cookie-alert-container">
     <div class="cookie-alert-text">
-      <span>&#127850;</span>
       <p>
+        <!-- <span>&#127850;</span> -->
         We use cookies to ensure that we give you the best experience on our
         website. Please read our
         <nuxt-link to="/privacy-policy">privacy policy</nuxt-link> for more

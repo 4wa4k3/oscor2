@@ -12,14 +12,17 @@
         <p>
           {{ $prismic.asText(description.primary.description1) }}
         </p>
-        <template v-for="(link, i) in description.items">
-          <a
-            v-if="link.link.kind"
-            :key="i"
-            :href="$prismic.asLink(link.link)"
-            >{{ $prismic.asText(link.link_text) }}</a
-          >
-        </template>
+        <div class="single-description-text-links">
+          <template v-for="(link, i) in description.items">
+            <a
+              v-if="link.link.kind"
+              :key="i"
+              :href="$prismic.asLink(link.link)"
+              target="_blank"
+              >{{ $prismic.asText(link.link_text) }}</a
+            >
+          </template>
+        </div>
       </div>
     </div>
   </div>

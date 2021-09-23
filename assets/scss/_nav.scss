@@ -34,6 +34,8 @@
   &-wrap {
     display: flex;
     justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
 
   }
 
@@ -85,6 +87,16 @@
     }
       
     }
+
+    &-logo-link{
+      display: block;
+      width: max-content;
+    }
+
+    // &-logo {
+    //   width: 100%;
+    //   height: auto;
+    // }
   }
 
   &__cart-container{

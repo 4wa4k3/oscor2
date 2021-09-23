@@ -31,8 +31,8 @@ export default {
   data() {
     return {
       logo: {
-        width: '1.9725in',
-        height: '0.4275in',
+        width: '100%', // 1.9725in
+        height: '100%', // 0.4275in
         color: '#fff',
       },
     }

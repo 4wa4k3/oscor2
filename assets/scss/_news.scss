@@ -1,11 +1,59 @@
 .news {
+
+  &-content-container {
+    @media only screen and (max-width: $bp-500) {
+      padding: $unit*4 $unit*4 0 $unit*4;
+    }
+  }
+
   &-events-container {
     display: flex;
+    flex-wrap: wrap;
+
+    @media only screen and(min-width:$bp-2500) {
+      max-width: 1920px;
+      margin: 0 auto;
+    }
+
+    @media only screen and (max-width: $bp-800) {
+    //   flex-wrap: wrap;
+      flex-direction: column-reverse;
+    }
+
+  }
+
+  &-content-hero {
+    @media only screen and(min-width:$bp-2500) {
+      max-width: 1920px;
+      margin:$unit*20.5 auto 0 auto; 
+    }
   }
 
   &-articles-container, &-tradeshows-container {
     width: 50%;
+    // width: fit-content
+    // width: max-content;
     padding: $unit*4 $unit*8 $unit*4 0;
+
+    @media only screen and(max-width: $bp-800) {
+      width: 100%;
+    }
+  }
+
+  &-articles-container {
+    @media only screen and(max-width: $bp-800) {
+      padding: $unit*4 0 0 0;
+    }
+
+    & h2 {
+      display: none;
+      @media only screen and(max-width: $bp-800) {
+        font-size: $h3;
+        color: $color_grey;
+        margin-top: 0;
+        display: inherit;
+      }
+    }
   }
 
   &-article-card {
@@ -40,6 +88,10 @@
 
   &-tradeshows-container{
     padding: $unit*4 $unit*12;
+
+    @media only screen and (max-width: $bp-1400) {
+      padding: $unit*4 $unit
+    }
     & h2 {
       font-size: $h3;
       color: $color_grey;
@@ -114,16 +166,46 @@
 
       &-container {
         padding: $unit*4 $unit*12;
-        height: 60vh;
+        height: auto;
+        min-height: 60vh;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: center;
+
+        @media only screen and (max-width: $bp-1200) {
+          padding: $unit*4 $unit*8;
+        }
+
+        @media only screen and (max-width: $bp-900) {
+          padding: $unit*4 $unit*4;
+        }
+        
       }
 
       &-card {
-        width: 40em;
+        width: calc(100vw / 5);
         background-color: $color-white;
-        margin: 0 $unit*2;
+        margin: $unit*4 $unit*2 0 $unit*2;
+
+        @media only screen and(max-width:$bp-1920) {
+          
+          max-width: 39em;
+        }
+
+
+
+        @media only screen and(max-width:$bp-1400) {
+          width: 40em;
+        }
+
+        @media only screen and(max-width:$bp-700) {
+          width: 35em;
+        }
+
+        @media only screen and(max-width:$bp-600) {
+          width: 60em;
+        }
       }
 
       &--inner-wrap {

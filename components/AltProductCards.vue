@@ -1,51 +1,52 @@
 <template>
   <section class="product-cards-section">
     <template v-for="(card, i) in cards">
-      <div
-        ref="cards"
-        :key="i"
-        class="product-cards-container"
-        :style="{ backgroundColor: card.primary.color }"
-      >
-        <div class="product-cards-circle"></div>
-        <div
-          class="product-cards-content-container"
-          :style="{ backgroundImage: `url(${card.primary.image.url})` }"
-        ></div>
-        <div class="product-cards-content-container-content">
-          <h2
-            ref="title"
-            v-html="$prismic.asText(card.primary.product_name)"
-          ></h2>
-          <h3>{{ $prismic.asText(card.primary.product_subtext) }}</h3>
-          <div class="french-sizes-container">
-            <template v-for="(fsize, index) in card.items">
-              <div
-                v-if="fsize.color !== null"
-                :key="index"
-                class="french-size-container"
-                :data-french-size="fsize.color"
-              >
-                <span class="french-size-text">
-                  {{ $prismic.asText(fsize.french_size) }}
-                </span>
-              </div>
-            </template>
-          </div>
-          <nuxt-link
-            :to="
-              localePath({
-                name: `division-category-product`,
-                params: {
-                  division: $route.params.division,
-                  category: $route.params.category,
-                  product: card.primary.link.uid,
-                },
-              })
-            "
-            >{{ $prismic.asText(card.primary.link_text) }}</nuxt-link
+      <div :key="i" class="product-cards-wrap">
+        <div class="product-cards-inner">
+          <div
+            ref="cards"
+            class="product-cards-container"
+            :style="{ backgroundColor: card.primary.color }"
           >
-          <!-- <nuxt-link
+            <div class="product-cards-circle"></div>
+            <div
+              class="product-cards-content-container"
+              :style="{ backgroundImage: `url(${card.primary.image.url})` }"
+            ></div>
+            <div class="product-cards-content-container-content">
+              <h2
+                ref="title"
+                v-html="$prismic.asText(card.primary.product_name)"
+              ></h2>
+              <h3>{{ $prismic.asText(card.primary.product_subtext) }}</h3>
+              <div class="french-sizes-container">
+                <template v-for="(fsize, index) in card.items">
+                  <div
+                    v-if="fsize.color !== null"
+                    :key="index"
+                    class="french-size-container"
+                    :data-french-size="fsize.color"
+                  >
+                    <span class="french-size-text">
+                      {{ $prismic.asText(fsize.french_size) }}
+                    </span>
+                  </div>
+                </template>
+              </div>
+              <nuxt-link
+                :to="
+                  localePath({
+                    name: `division-category-product`,
+                    params: {
+                      division: $route.params.division,
+                      category: $route.params.category,
+                      product: card.primary.link.uid,
+                    },
+                  })
+                "
+                >{{ $prismic.asText(card.primary.link_text) }}</nuxt-link
+              >
+              <!-- <nuxt-link
             v-if="$route.params.division === 'medical-components'"
             :to="
               localePath({
@@ -59,6 +60,8 @@
             "
             >{{ $prismic.asText(card.primary.link_text) }}</nuxt-link
           > -->
+            </div>
+          </div>
         </div>
       </div>
     </template>
@@ -95,17 +98,29 @@ export default {
           }
         }
 
+        content.children[2].style.visibility = 'hidden'
         content.style.bottom = `-${
-          content.children[2].clientHeight +
-          content.children[3].clientHeight +
-          6
-        }px`
+          (content.children[2].clientHeight +
+            content.children[3].clientHeight +
+            100) /
+          16
+        }em`
+
+        window.addEventListener('resize', () => {
+          content.style.bottom = `-${
+            (content.children[2].clientHeight +
+              content.children[3].clientHeight +
+              100) /
+            16
+          }em`
+        })
 
         elem.addEventListener('mouseover', function (e) {
           circle.classList.add('over')
           product.classList.add('shrink')
           content.classList.add('slide-up')
-          content.style.bottom = `${0}px`
+          content.style.bottom = `${0}em`
+          content.children[2].style.visibility = 'visible'
           // circle.style.background = 'radial-gradient(#323233, #7D7D80)'
           // circle.style.transition = 'background-color 0.3s'
         })
@@ -114,11 +129,13 @@ export default {
           circle.classList.remove('over')
           product.classList.remove('shrink')
           content.classList.remove('slide-up')
+          content.children[2].style.visibility = 'hidden'
           content.style.bottom = `-${
-            content.children[2].clientHeight +
-            content.children[3].clientHeight +
-            6
-          }px`
+            (content.children[2].clientHeight +
+              content.children[3].clientHeight +
+              100) /
+            16
+          }em`
           // circle.style.background = 'radial-gradient(#fff, #fff)'
           // circle.style.transition = 'background-color 0.3s'
         })

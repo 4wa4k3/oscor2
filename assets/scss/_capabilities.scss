@@ -16,15 +16,17 @@
   &-content-wrapper {
     padding: $unit*12 $unit*10 0 $unit*12;
 
+    @media only screen and (max-width: $bp-500) {
+      padding: $unit*12 $unit*5 0 $unit*5;
+    }
+
     & h1 {
       font-size: $h2;
       color: $color_grey;
     }
 
     & hr {
-      border: 0.4rem solid #EE3D42;
-      border-radius: .2rem;
-      width: 10.7em;
+      @include hr();
     }
   }
 

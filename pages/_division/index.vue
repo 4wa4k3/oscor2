@@ -1,5 +1,12 @@
 <template>
-  <div class="container">
+  <div
+    class="container"
+    :class="[
+      this.$route.params.division === 'contract-development-manufacturing'
+        ? 'oem'
+        : '',
+    ]"
+  >
     <template
       v-if="
         this.$route.params.division === 'contract-development-manufacturing'

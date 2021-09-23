@@ -1,20 +1,22 @@
 <template>
   <div ref="sceneWrap" class="pillar-renderer-wrap">
     <div class="pillar-renderer-content">
-      <div class="pillar-renderer-content-title">
-        <h2>{{ $prismic.asText(pillarInfo.section_title) }}</h2>
-        <hr />
-        <div class="pillar-renderer-content-cta-container">
-          <nuxt-link
-            v-if="
-              pillarInfo.section_title[0].text === 'Finished Medical Devices'
-            "
-            to="#"
-            >Product Portfolio</nuxt-link
-          >
-          <nuxt-link :to="localePath(`/${pillarInfo.section_link.uid}`)">
-            {{ $prismic.asText(pillarInfo.section_link_text) }}
-          </nuxt-link>
+      <div class="pillar-renderer-content-div">
+        <div class="pillar-renderer-content-title">
+          <h2>{{ $prismic.asText(pillarInfo.section_title) }}</h2>
+          <hr />
+          <div class="pillar-renderer-content-cta-container">
+            <nuxt-link
+              v-if="
+                pillarInfo.section_title[0].text === 'Finished Medical Devices'
+              "
+              to="#"
+              >Product Portfolio</nuxt-link
+            >
+            <nuxt-link :to="localePath(`/${pillarInfo.section_link.uid}`)">
+              {{ $prismic.asText(pillarInfo.section_link_text) }}
+            </nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -168,6 +170,7 @@ export default {
         this.lights.directional
       )
       this.scene.background = new THREE.Color(`${this.modelInfo.color}`)
+      // ${this.modelInfo.color}
 
       // Canvas
       this.canvas = this.$refs.canvas
@@ -207,7 +210,7 @@ export default {
       // Animate
       const tick = () => {
         this.controls.update()
-        // this.renderer.render(this.scene, this.camera)
+        this.renderer.render(this.scene, this.camera)
         window.requestAnimationFrame(tick)
       }
       tick()

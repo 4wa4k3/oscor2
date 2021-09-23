@@ -1,16 +1,18 @@
 <template>
-  <section class="single-content-hero">
-    <div class="single-content-container">
-      <div class="single-content-heading">
-        <h1 ref="title" v-html="$prismic.asText(title)"></h1>
-        <hr />
-        <h2>{{ $prismic.asText(subtitle) }}</h2>
+  <div class="single-content-container-wrap">
+    <section class="single-content-hero">
+      <div class="single-content-container">
+        <div class="single-content-heading">
+          <h1 ref="title" v-html="$prismic.asText(title)"></h1>
+          <hr />
+          <h2>{{ $prismic.asText(subtitle) }}</h2>
+        </div>
+        <div class="single-content-image-container">
+          <img :src="image.url" :alt="$prismic.asText(title)" />
+        </div>
       </div>
-      <div class="single-content-image-container">
-        <img :src="image.url" :alt="$prismic.asText(title)" />
-      </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </template>
 
 <script>

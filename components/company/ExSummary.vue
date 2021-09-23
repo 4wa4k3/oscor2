@@ -1,5 +1,5 @@
 <template>
-  <div class="single-description-container company-section">
+  <div class="company-section">
     <div class="company-executive-summary-container">
       <div class="company-title">
         <h2>{{ $prismic.asText(title) }}</h2>

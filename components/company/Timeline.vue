@@ -1,6 +1,7 @@
 <template>
   <div ref="container" class="company-timeline-container company-section">
-    <div class="single-description-container">
+    <div class="">
+      <!-- single-description-container -->
       <div class="company-title">
         <h2>{{ $prismic.asText(timeline.primary.subtitle) }}</h2>
         <hr />
@@ -61,12 +62,21 @@ export default {
     const container = this.$refs.container
     let counter = 0
 
-    momentDiv.forEach((moment) => {
-      if (counter < moment.offsetHeight) {
-        counter = moment.offsetHeight
+    // momentDiv.forEach((moment) => {
+    //   if (counter < moment.offsetHeight) {
+    //     counter = moment.offsetHeight
+    //   }
+    //   moment.style.height = `${counter}px`
+    // })
+
+    // console.log(moments)
+
+    for (let i = 0; i < momentDiv.length; i++) {
+      if (counter < momentDiv[i].offsetHeight) {
+        counter = momentDiv[i].offsetHeight
       }
-      moment.style.height = `${counter}px`
-    })
+      momentDiv[i].style.height = `${counter / 16}em`
+    }
 
     gsap.to(moments, {
       xPercent: -100 * (moments.length - 1),

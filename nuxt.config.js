@@ -119,6 +119,10 @@ export default {
       'three'
     ],
 
+    babel: {
+      compact: true
+    },
+
     extend(config, ctx) {
       if(ctx.isDev && ctx.isClient) {
         config.module.rules.push({

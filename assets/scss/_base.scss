@@ -8,6 +8,17 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+
+  @media only screen and (max-width: $bp-1200) {
+    font-size: 50%;
+  }
+  @media only screen and (max-width: $bp-500) {
+    font-size: 40%;
+  }
+
+  @media only screen and (max-width:$bp-300) {
+    font-size: 30%;
+  }
 }
 
 *,
@@ -190,6 +201,18 @@ body::-webkit-scrollbar-corner {
       padding-bottom: calc(100% * 6/16);
       overflow: hidden;
       position: relative;
+
+      @media only screen and (max-width: $bp-1000) {
+        padding-bottom: calc(100% * 9/16);
+      }
+
+      @media only screen and (max-width: $bp-600) {
+        padding-bottom: calc(100% * 12/16);
+      }
+
+      @media only screen and (max-width: $bp-500) {
+        padding-bottom: calc(100% * 16/16);
+      }
     }
     &-container {
       position: absolute;
@@ -202,25 +225,61 @@ body::-webkit-scrollbar-corner {
 
     &-content {
       position: absolute;
-      width: 55%;
+      width: 100%;
       height: 100%;
       padding: $unit*4 $unit*8;
       display: flex;
       align-items: center;
       justify-content: center;
-      left: calc(100%/4);
+      left: 0;
+
+      @media only screen and (max-width: $bp-600) {
+        padding: $unit*4 $unit*4;
+
+      }
+
+      &-div{
+        width: 33%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+
+        @media only screen and (max-width:$bp-1500) {
+          width: 45%;
+        }
+
+        @media only screen and (max-width:$bp-1000) {
+          width: 55%;
+        }
+
+        @media only screen and (max-width:$bp-800) {
+          width: 75%;
+        }
+
+
+        @media only screen and (max-width:$bp-600) {
+          width: 85%;
+        }
+
+        @media only screen and (max-width:$bp-500){
+          width: 100%;
+        }
+      }
 
      &-title {
-      
+      user-select: none;
       & hr {
-        border: .4rem solid $color-red;
-        border-radius: .2rem;
-        width: 10.7em;
+        @include hr();
       }
   
       & h2 {
         color: $color-white;
         font-size: $h2;
+
+        // @media only screen and(max-width:$bp-400) {
+        //   font-size: $h3;
+        // }
         
       }
      }
@@ -232,6 +291,11 @@ body::-webkit-scrollbar-corner {
        display: flex;
        align-items: center;
        justify-content: flex-end;
+
+       @media only screen and (max-width:$bp-500){
+        width: 100%;
+        justify-content: center;
+      }
 
        & a {
         padding: .8em 1.6em;
@@ -262,4 +326,14 @@ body::-webkit-scrollbar-corner {
     }
   }
 
+}
+
+.oem {
+  @media only screen and(min-width:$bp-2500) {
+    background-color: $color-alt-white;
+
+    & > section  {
+      background-color: $color-white;
+    }
+  }
 }

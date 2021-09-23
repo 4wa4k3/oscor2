@@ -1,30 +1,33 @@
 <template>
   <div class="container">
     <template v-if="$route.params.division === 'finished-medical-devices'">
-      <div
-        class="division-content-container"
+      <Title
+        :title="title"
+        :image="image"
+        :subtitle="subtitle"
         :class="{ 'no-right-pad': docs.no_right_padding }"
-      >
-        <Title :title="title" :image="image" :subtitle="subtitle" />
-      </div>
+      />
+
       <Description :description="description" />
       <Carousel
         v-if="carousel"
         :title="carousel.primary.title"
         :slides="carousel.items"
       />
-      <Video v-if="video" :link="video.primary.video_link" />
-      <div v-if="configurations" class="division-content-container">
+      <Video
+        v-if="video"
+        :link="video.primary.video_link"
+        :poster="video.primary.poster"
+      />
+      <template v-if="configurations.length">
         <Configurations :configs="configurations" />
-      </div>
-      <div class="division-content-container">
-        <ProductTable
-          v-if="tables.length > 0"
-          :section-title="sectionTitle"
-          :rows="rows"
-          :tables="tables"
-        />
-      </div>
+      </template>
+      <ProductTable
+        v-if="tables.length > 0"
+        :section-title="sectionTitle"
+        :rows="rows"
+        :tables="tables"
+      />
     </template>
     <!-- <template v-if="$route.params.division === 'medical-components'">
       <div class="division-content-container">
@@ -134,11 +137,7 @@ export default {
       const configs = this.docs.body.filter(
         (el) => el.slice_type === 'configurations'
       )
-      if (configs) {
-        return configs
-      } else {
-        return false
-      }
+      return configs
     },
     sectionTitle() {
       const sectionTitle = this.docs.section_name
@@ -152,7 +151,6 @@ export default {
       const tables = this.docs.body1.filter(
         (el) => el.slice_type === 'table_head'
       )
-      console.log(tables.length)
       if (tables) {
         return tables
       } else {
@@ -170,7 +168,7 @@ export default {
   },
   head({ $prismic }) {
     return {
-      title: $prismic.asText(this.title),
+      title: $prismic.asText(this.title).replace(/(<([^>]+)>)/gi, ''),
     }
   },
 }

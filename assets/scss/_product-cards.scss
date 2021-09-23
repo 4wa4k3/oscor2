@@ -3,15 +3,41 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    padding-top: $unit*27.75;
+    padding-top: $unit*20;
     padding-bottom: $unit*27.75*2;
   }
-  &-container {
+
+  &-wrap {
+    position: relative;
     width: 30em;
-    height: 53.3em;
-    background-color: $color_grey_light;
+    height: 0;
+    padding-top: calc(30em * 16 / 9);
+    overflow: hidden;
     border-radius: $unit * 3.125 ;
-    margin:  $unit*2;
+    margin-top: $unit*4;
+
+    @media only screen and (max-width: $bp-600) {
+      width: 30em;
+      padding-top: calc(30em * 16 / 9);
+      margin-top: $unit*8;
+    }
+  }
+
+  &-inner {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &-container {
+    // width: 30em;
+    // height: 53.3em;
+    width: 100%;
+    height: 100%;
+    background-color: $color_grey_light;
+    // margin:  $unit*2;
     position: relative;
     overflow: hidden;
   }

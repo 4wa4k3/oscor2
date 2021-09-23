@@ -1,10 +1,10 @@
 .cookie-alert {
   &-container {
     width: 100%;
-    background-color: $color_grey_dark;
+    background-color: $color_red;
     padding: $unit*4 $unit*4;
     position: fixed;
-    top: calc(100vh - 90px);
+    bottom: 0;
     z-index: 100;
   }
 
@@ -12,6 +12,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media only screen and (max-width:$bp-1000) {
+      flex-wrap: wrap;
+    }
 
     & span {
       font-size: $h4;
@@ -25,13 +29,17 @@
       margin-left: $unit;
       margin-right: $unit;
       font-weight: 700;
-
+      @media only screen and (max-width:$bp-900) {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+      }
       & a {
         color: $color_alt_white;
         transition: color .3s ease-in-out;
 
         &:hover {
-          color: $color_red;
+          color: darken($color_grey, 20%)
         }
       }
     }
@@ -39,7 +47,10 @@
 
   &-buttons {
     margin-left: $unit;
-
+    @media only screen and (max-width:$bp-1000) {
+      margin-left: 0;
+      margin-top: $unit*2;
+    }
     & button {
       border: none;
       color: $color_grey_dark;
@@ -47,10 +58,11 @@
       text-transform: uppercase;
       padding: $unit*.5 $unit;
       background-color: $color_alt_white;
-      transition: background-color .3s ease-in-out;
+      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
       &:hover {
-        background-color:$color_red;
+        background-color:darken($color_grey, 20%);
+        color: $color_white;
       }
 
       &:first-of-type {

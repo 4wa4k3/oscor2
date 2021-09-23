@@ -1,49 +1,60 @@
 <template>
-  <div ref="container" class="single-table-container">
-    <div class="single-table-title">
-      <h2>{{ $prismic.asText(sectionTitle) }}</h2>
-      <hr />
-    </div>
-    <template v-for="(table, i) in tables">
-      <div ref="tables" :key="i" class="single-table--table-container">
-        <h3 ref="tableTitle">
-          {{ $prismic.asText(table.primary.table_title) }}
-          <span ref="plus"></span>
-        </h3>
-        <div ref="tableContent" class="single-table--table-content">
-          <article v-html="$prismic.asHtml(table.primary.table_info)"></article>
-          <table class="single-table--table">
-            <tbody>
-              <tr>
-                <template v-for="(row, index) in table.items">
-                  <th :key="index">{{ $prismic.asText(row.row) }}</th>
-                </template>
-              </tr>
-              <template v-for="(row, idx) in rows">
-                <tr
-                  v-if="
-                    $prismic.asText(row.primary.for).toLowerCase() ===
-                    $prismic.asText(table.primary.table_title).toLowerCase()
-                  "
-                  :key="idx"
-                >
-                  <template v-for="(cell, inx) in row.items">
-                    <td :key="inx">
-                      <template v-if="cell.color">
-                        <client-only
-                          ><span v-html="cell.color"></span
-                        ></client-only>
-                      </template>
-                      {{ $prismic.asText(cell.cell) }}
-                    </td>
+  <div class="single-table-content-container">
+    <div ref="container" class="single-table-container">
+      <div class="single-table-title">
+        <h2>{{ $prismic.asText(sectionTitle) }}</h2>
+        <hr />
+      </div>
+      <template v-for="(table, i) in tables">
+        <div ref="tables" :key="i" class="single-table--table-container">
+          <h3 ref="tableTitle">
+            {{ $prismic.asText(table.primary.table_title) }}
+            <span ref="plus"></span>
+          </h3>
+          <div ref="tableContent" class="single-table--table-content">
+            <article
+              v-if="table.primary.table_info.length"
+              v-html="$prismic.asHtml(table.primary.table_info)"
+            ></article>
+            <div
+              v-if="table.primary.table_image.url"
+              class="single-table--table-image"
+            >
+              <img :src="table.primary.table_image.url" alt="" />
+            </div>
+            <table class="single-table--table">
+              <tbody>
+                <tr>
+                  <template v-for="(row, index) in table.items">
+                    <th :key="index">{{ $prismic.asText(row.row) }}</th>
                   </template>
                 </tr>
-              </template>
-            </tbody>
-          </table>
+                <template v-for="(row, idx) in rows">
+                  <tr
+                    v-if="
+                      $prismic.asText(row.primary.for).toLowerCase() ===
+                      $prismic.asText(table.primary.table_title).toLowerCase()
+                    "
+                    :key="idx"
+                  >
+                    <template v-for="(cell, inx) in row.items">
+                      <td :key="inx">
+                        <template v-if="cell.color">
+                          <client-only
+                            ><span v-html="cell.color"></span
+                          ></client-only>
+                        </template>
+                        {{ $prismic.asText(cell.cell) }}
+                      </td>
+                    </template>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    </template>
+      </template>
+    </div>
   </div>
 </template>
 

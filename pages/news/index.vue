@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container news">
     <div class="news-content-container">
       <div class="news-content-hero">
         <h1>{{ $prismic.asText(docs.title) }}</h1>
@@ -7,6 +7,7 @@
       </div>
       <div class="news-events-container">
         <div class="news-articles-container">
+          <h2>News</h2>
           <template v-for="article in articles">
             <div
               v-if="article.data.image.url"
@@ -69,7 +70,7 @@
 
 <script>
 export default {
-  name: 'Company',
+  name: 'NewsAndEvents',
   layout: 'DivisionLight',
   async asyncData({ $prismic, error, app }) {
     const currentLocale = app.i18n.locales.filter(
