@@ -79,12 +79,12 @@ export default {
       // CubeLoader
       this.cubeTextureLoader = new THREE.CubeTextureLoader()
       this.envMapTexture = this.cubeTextureLoader.load([
-        '/textures/environmentMaps/px.png',
-        '/textures/environmentMaps/nx.png',
-        '/textures/environmentMaps/px.png',
-        '/textures/environmentMaps/px.png',
-        '/textures/environmentMaps/pz.png',
-        '/textures/environmentMaps/nz.png',
+        '/textures/environmentMaps/px.webp',
+        '/textures/environmentMaps/nx.webp',
+        '/textures/environmentMaps/px.webp',
+        '/textures/environmentMaps/px.webp',
+        '/textures/environmentMaps/pz.webp',
+        '/textures/environmentMaps/nz.webp',
       ])
 
       // TEST GEOMETRY

@@ -1,8 +1,16 @@
 <template>
-  <div class="division-content-container">
-    <section class="single-configs-section">
+  <div class="single-configs--content-container">
+    <section
+      class="single-configs-section"
+      :class="[configs.length > 1 ? 'flex' : 'single-flex']"
+    >
       <template v-for="(config, i) in configs">
-        <div ref="container" :key="i" class="single-configs-container">
+        <div
+          ref="container"
+          :key="i"
+          class="single-configs-container"
+          :class="[configs.length > 1 ? 'multiple' : 'no']"
+        >
           <div class="single-configs-title">
             <h3>{{ $prismic.asText(config.primary.title) }}</h3>
             <hr />
@@ -13,14 +21,7 @@
               :src="config.primary.image.url"
               alt=""
             />
-            <svg
-              v-if="$prismic.asText(config.primary.svg)"
-              id="Layer_1"
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1565.97 408.95"
-              v-html="$prismic.asText(config.primary.svg)"
-            ></svg>
+            <div v-html="$prismic.asText(config.primary.svg)"></div>
           </figure>
         </div>
       </template>

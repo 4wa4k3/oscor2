@@ -1,9 +1,6 @@
 <template>
   <div class="container">
     <HeroVideo :video="docs.body[0].primary.video_link[0].text" />
-    <!-- <template v-for="(p, i) in pillar">
-      <Pillar :key="`pillar-${i}`" :pillar="p" />
-    </template> -->
     <template v-for="(p, i) in pillar">
       <Scene
         :key="i"
@@ -16,7 +13,6 @@
 </template>
 
 <script>
-// import Pillar from '~/components/Pillar'
 import HeroVideo from '~/components/HeroVideo'
 import NewsSection from '~/components/NewsSection'
 import Scene from '~/components/three/Scene'
@@ -27,7 +23,6 @@ export default {
   components: {
     HeroVideo,
     Scene,
-    // Pillar,
     NewsSection,
   },
   async asyncData({ $prismic, error, app }) {
@@ -66,28 +61,7 @@ export default {
     return {
       docs: [],
       section: [],
-      pillar: [
-        // {
-        //   id: 1,
-        //   video: 'movie_1',
-        //   image: '/static/images/0001.png',
-        // },
-        // {
-        //   id: 2,
-        //   video: 'movie_2',
-        //   image: '~static/images/0001.png',
-        // },
-        // {
-        //   id: 3,
-        //   video: 'movie_3',
-        //   image: '~static/images/0001.png',
-        // },
-        // {
-        //   id: 4,
-        //   video: 'movie_4',
-        //   image: '~static/images/0001.png',
-        // },
-      ],
+      pillar: [],
       modelInfo: {
         scene: [
           {
@@ -122,5 +96,16 @@ export default {
 
   mounted() {},
   methods: {},
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.docs.meta_description[0].text,
+        },
+      ],
+    }
+  },
 }
 </script>

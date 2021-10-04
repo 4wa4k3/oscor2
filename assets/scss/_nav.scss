@@ -233,9 +233,16 @@
     }
     & a {
       @extend %link;
-        
-      
     }
+  }
+
+  &--non-link {
+    display: block;
+    font-size: $font_base_size;
+    font-weight: 400;
+    padding: $unit $unit;
+    color: $color_alt_white;
+    width: 100%;
   }
 
   &--more-btn {

@@ -121,6 +121,13 @@ export default {
   head({ $prismic }) {
     return {
       title: $prismic.asText(this.title),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: $prismic.asText(this.docs.meta_description),
+        },
+      ],
     }
   },
 }

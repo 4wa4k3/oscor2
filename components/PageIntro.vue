@@ -19,7 +19,9 @@
         <hr />
         <p>{{ $prismic.asText(intro.intro_text) }}</p>
         <div class="oem-division-content__intro-text-cta">
-          <a href="#">{{ $prismic.asText(intro.link_text) }}</a>
+          <a :href="intro.link.url" target="_blank">{{
+            $prismic.asText(intro.link_text)
+          }}</a>
         </div>
       </section>
     </section>

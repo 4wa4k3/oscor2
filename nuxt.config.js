@@ -1,6 +1,6 @@
 export default {
   server:{
-    host: '0'
+    // host: '0'
   },
   /*
    ** Nuxt target

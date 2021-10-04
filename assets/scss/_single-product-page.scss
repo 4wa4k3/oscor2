@@ -210,7 +210,7 @@
       }
 
       & p {
-        font-size: $h5;
+        font-size: $h4;
         max-width: 70ch;
         // margin: 0 $unit*8;
 
@@ -468,26 +468,73 @@
 
   &-configs {
 
+    &--content-container {
+      padding-top: $unit*12;
+      padding-right: $unit*12;
+      padding-left: $unit*12;
+      padding-bottom: 0;
+
+      // @media only screen and (max-width: $bp-500) {
+      //   padding: $unit*12 $unit*4 0 $unit*4;
+      // }
+
+      @media only screen and (max-width:$bp-800) {
+        padding-top: $unit*12;
+        padding-left:$unit*4;
+        padding-right:$unit*4;
+      }
+
+      @media only screen and (max-width:$bp-600) {
+        padding-top: $unit*12;
+        padding-left:$unit*2;
+        padding-right:$unit*2;
+      }
+
+    }
+
     &-section {
-      display: flex;
-      justify-content: space-between;
       // height: (108em/2);
+
+      &.flex {
+        display: flex;
+        justify-content: space-between;
+
+        @media only screen and (max-width: $bp-1200) {
+          flex-direction: column;
+        }
+      }
+
+      &.single-flex {
+        display: flex;
+        flex-direction: column;
+      }
     }
     &-container{
-      width: 45%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      // align-content: center;
-      // align-items: center;
-      justify-content: space-between;
+      &.multiple {
+        width: 45%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        // align-content: center;
+        // align-items: center;
+        justify-content: space-between;
+        
+        &:first-of-type {
+          margin-right: $unit*4;
+          @media only screen and (max-width: $bp-1200) {
+           margin: 0;
+          }
+        }
+        &:last-of-type {
+          margin-left: $unit*4;
+          @media only screen and (max-width: $bp-1200) {
+           margin: 0;
+          }
+        }
 
-      
-      &:first-of-type {
-        margin-right: $unit*4;
-      }
-      &:last-of-type {
-        margin-left: $unit*4;
+        @media only screen and (max-width: $bp-1200) {
+          width: 100%;
+        }
       }
     }
 
@@ -505,6 +552,7 @@
     }
 
     &-figure {
+      width: 100%;
 
       & img {
         width: 100%;
@@ -611,11 +659,17 @@
     }
 
     &--table-image {
-      padding-top: $unit*2;
+      margin-top: $unit*4;
+      width: 100%;
+      height: 0;
+      padding-top: calc(100% * 3/16);
+      position: relative;
       & img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        position: absolute;
+        top:0;
+        left:0;
       }
     }
 

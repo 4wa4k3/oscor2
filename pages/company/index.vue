@@ -3,7 +3,6 @@
     <HeroTitle :title="docs.title" :img="docs.hero_image" />
     <ExSummary :title="exsum.primary.subtitle" :summary="exsum.items" />
     <History :history="history" />
-    <Timeline :timeline="timeline" />
     <Facilities :facilities="facilities" />
   </div>
 </template>
@@ -12,7 +11,6 @@
 import HeroTitle from '~/components/company/HeroTitle'
 import ExSummary from '~/components/company/ExSummary'
 import History from '~/components/company/History'
-import Timeline from '~/components/company/Timeline'
 import Facilities from '~/components/company/Facilities'
 export default {
   layout: 'home',
@@ -21,7 +19,6 @@ export default {
     HeroTitle,
     ExSummary,
     History,
-    Timeline,
     Facilities,
   },
   async asyncData({ $prismic, error, app }) {

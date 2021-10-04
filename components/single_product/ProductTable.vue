@@ -18,6 +18,7 @@
             ></article>
             <div
               v-if="table.primary.table_image.url"
+              ref="tableImage"
               class="single-table--table-image"
             >
               <img :src="table.primary.table_image.url" alt="" />
@@ -59,11 +60,11 @@
 </template>
 
 <script>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-if (process.client) {
-  gsap.registerPlugin(ScrollTrigger)
-}
+// import { gsap } from 'gsap'
+// import { ScrollTrigger } from 'gsap/ScrollTrigger'
+// if (process.client) {
+//   gsap.registerPlugin(ScrollTrigger)
+// }
 export default {
   name: 'ProductTable',
   props: {
@@ -87,64 +88,66 @@ export default {
     },
   },
   mounted() {
-    const container = this.$refs.container
+    // const container = this.$refs.container
     const titles = this.$refs.tableTitle
-    const tables = this.$refs.tables
+    // const tables = this.$refs.tables
     const contents = this.$refs.tableContent
     const plus = this.$refs.plus
 
-    function setClass(el, elem) {
-      elem.classList.add('active')
-      el.classList.add('active')
-    }
-    setClass(contents[0], plus[0])
-
-    function checkClass(el, elem) {
-      el.classList.contains('active')
-        ? (el.style.maxHeight = `${el.scrollHeight}px`)
-        : (el.style.maxHeight = '0')
-
-      elem.classList.contains('active')
-        ? (elem.style.transform = `rotate(45deg)`)
-        : (elem.style.transform = `rotate(0)`)
-    }
-    checkClass(contents[0], plus[0])
-
-    titles.forEach((title) => {
-      title.addEventListener('click', () => {
-        const content = title.nextElementSibling
-        const sign = title.children[0]
-        content.classList.toggle('active')
-        sign.classList.toggle('active')
-
-        checkClass(content, sign)
-      })
-    })
-
     this.$nextTick(() => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          markers: false,
-          start: 'top center',
-          end: 'bottom bottom',
-        },
-      })
+      function setClass(el, elem) {
+        elem.classList.add('active')
+        el.classList.add('active')
+      }
+      setClass(contents[0], plus[0])
 
-      tl.from(container.children[0], { y: -100, opacity: 0, duration: 1 })
+      function checkClass(el, elem) {
+        el.classList.contains('active')
+          ? (el.style.maxHeight = `${el.scrollHeight}px`)
+          : (el.style.maxHeight = '0')
+
+        elem.classList.contains('active')
+          ? (elem.style.transform = `rotate(45deg)`)
+          : (elem.style.transform = `rotate(0)`)
+      }
+      checkClass(contents[0], plus[0])
+
+      titles.forEach((title) => {
+        title.addEventListener('click', () => {
+          const content = title.nextElementSibling
+          const sign = title.children[0]
+          content.classList.toggle('active')
+          sign.classList.toggle('active')
+
+          checkClass(content, sign)
+        })
+      })
     })
 
-    tables.forEach((table) => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          markers: false,
-          start: 'top center',
-          end: 'bottom bottom',
-        },
-      })
-      tl.from(table, { y: -100, opacity: 0, duration: 1 })
-    })
+    // this.$nextTick(() => {
+    //   const tl = gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: container,
+    //       markers: false,
+    //       start: 'top center',
+    //       end: 'bottom bottom',
+    //     },
+    //   })
+
+    //   tl.from(container.children[0], { y: -100, opacity: 0, duration: 1 })
+    // })
+
+    // tables.forEach((table) => {
+    //   const tl = gsap.timeline({
+    //     scrollTrigger: {
+    //       trigger: container,
+    //       markers: false,
+    //       start: 'top center',
+    //       end: 'bottom bottom',
+    //     },
+    //   })
+    //   tl.from(table, { y: -100, opacity: 0, duration: 1 })
+    // })
   },
 }
 </script>

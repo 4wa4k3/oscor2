@@ -13,8 +13,8 @@
     height: 0;
     padding-top: calc(30em * 16 / 9);
     overflow: hidden;
-    border-radius: $unit * 3.125 ;
-    margin-top: $unit*4;
+    border-radius: $unit * 3.125;
+    margin: $unit*4;
 
     @media only screen and (max-width: $bp-600) {
       width: 30em;

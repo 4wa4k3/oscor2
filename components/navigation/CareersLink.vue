@@ -1,14 +1,6 @@
 <template>
   <div ref="lvl1" class="side-nav--link">
-    <nuxt-link
-      :to="
-        localePath({
-          name: 'careers',
-          params: { careers: car.primary.nav_link.uid },
-        })
-      "
-      @click.native="navOpen"
-      >{{ car.primary.link_text }}</nuxt-link
+    <span class="side-nav--non-link">{{ car.primary.link_text }}</span
     ><span
       v-if="car.items[0].second_level_link_name[0]"
       ref="moreBtn"

@@ -9,9 +9,11 @@
     </div>
     <div class="footer-center-col">
       <div class="footer-top-container-links">
-        <template v-for="(link, i) in menuLinks">
+        <template v-for="(link, i) in footerLinks">
           <span :key="i">
-            <nuxt-link to="#">{{ link.primary.link_text }}</nuxt-link>
+            <nuxt-link :to="localePath(`/${link.primary.nav_link.uid}`)">{{
+              link.primary.link_text
+            }}</nuxt-link>
           </span>
         </template>
         <span><nuxt-link to="/quality-policy">Quality Policy</nuxt-link></span>
@@ -46,7 +48,10 @@
     </div>
     <div class="footer-right-col">
       <div class="footer-top-container-social-media">
-        <nuxt-link to="#"
+        <a
+          href="https://www.facebook.com/oscor.inc/"
+          target="_blank"
+          alt="Oscor Facebook"
           ><svg
             id="Layer_1"
             class="footer-top-container-social-media-icon--svg"
@@ -65,9 +70,12 @@
                 d="M19 9.5c2.2 0 3.2.3 3.2.3l-.4 2.6s-.7-.2-1.4-.2-1.3.2-1.3.9v2h2.8l-.2 2.5H19v8.8h-3.3v-8.8h-1.8v-2.5h1.8v-1.7c0-.8 0-1.9.6-2.6.5-.8 1.3-1.3 2.7-1.3m0-.5c-1.4 0-2.4.5-3.1 1.5-.7.9-.7 2.2-.7 2.9v1.2h-1.3c-.3 0-.5.2-.5.5v2.5c0 .3.2.5.5.5h1.3v8.3c0 .3.2.5.5.5H19c.3 0 .5-.2.5-.5v-8.3h2.1c.3 0 .5-.2.5-.5l.2-2.5V15c0-.3-.2-.5-.5-.5h-2.3V13c0-.3.3-.4.8-.4.6 0 1.3.2 1.3.2h.1c.1 0 .2 0 .3-.1.1-.1.2-.2.2-.3l.4-2.6c0-.2-.1-.5-.3-.6-.1.1-1.1-.2-3.3-.2z"
               />
             </g></svg
-        ></nuxt-link>
+        ></a>
 
-        <nuxt-link to="#"
+        <a
+          href="https://twitter.com/oscorinc"
+          target="_blank"
+          alt="Oscor Twitter"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             class="footer-top-container-social-media-icon--svg"
@@ -83,9 +91,12 @@
                 d="M26.5 12.7c-.6.3-1.3.5-2 .6.7-.4 1.3-1.1 1.5-1.9-.7.4-1.4.7-2.2.8-.6-.7-1.5-1.1-2.6-1.1-1.9 0-3.5 1.6-3.5 3.5 0 .3 0 .5.1.8-2.9-.1-5.5-1.5-7.2-3.7-.3.5-.5 1.1-.5 1.8 0 1.2.6 2.3 1.6 2.9-.6 0-1.1-.2-1.6-.4v0c0 1.7 1.2 3.1 2.8 3.4-.3.1-.6.1-.9.1-.2 0-.4 0-.7-.1.4 1.4 1.7 2.4 3.3 2.4-1.2.9-2.7 1.5-4.3 1.5h-.8c1.5 1 3.4 1.6 5.4 1.6 6.4 0 9.9-5.3 9.9-9.9v-.5c.7-.5 1.3-1.1 1.7-1.8"
               />
             </g></svg
-        ></nuxt-link>
+        ></a>
 
-        <nuxt-link to="#"
+        <a
+          href="https://www.youtube.com/channel/UCjuW4lI4Wyo1Ef_a95xXyCg"
+          target="_blank"
+          alt="Oscor YouTube Channel"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
             class="footer-top-container-social-media-icon--svg"
@@ -101,9 +112,12 @@
                 d="M21.3 18l-5.6 3.3v-6.5l5.6 3.2zm5.2 3v-6s0-2.9-2.9-2.9H12.4s-2.9 0-2.9 2.9v6s0 2.9 2.9 2.9h11.1c.1.1 3 .1 3-2.9"
               />
             </g></svg
-        ></nuxt-link>
+        ></a>
 
-        <nuxt-link to="#"
+        <a
+          href="https://www.linkedin.com/company/oscor-inc."
+          target="_blank"
+          alt="Oscor LinkedIn"
           ><svg
             id="Layer_1"
             class="footer-top-container-social-media-icon--svg"
@@ -155,7 +169,7 @@
                 d="M12 15.9h2.5V24H12v-8.1zm1.3-4.1c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5-1.5-.7-1.5-1.5.7-1.5 1.5-1.5M16.1 15.9h2.4V17c.3-.6 1.2-1.3 2.4-1.3 2.6 0 3 1.7 3 3.9V24h-2.5v-4c0-.9 0-2.2-1.3-2.2s-1.5 1-1.5 2.1v4h-2.5v-8z"
               />
             </g></svg
-        ></nuxt-link>
+        ></a>
       </div>
     </div>
   </footer>
@@ -192,6 +206,13 @@ export default {
       },
       menuLinks: [],
     }
+  },
+  computed: {
+    footerLinks() {
+      return this.menuLinks.filter(
+        (link) => link.primary.link_text.toLowerCase() !== 'careers'
+      )
+    },
   },
 }
 </script>

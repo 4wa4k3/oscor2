@@ -8,7 +8,7 @@
         :class="{ 'no-right-pad': docs.no_right_padding }"
       />
 
-      <Description :description="description" />
+      <Description v-if="description" :description="description" />
       <Carousel
         v-if="carousel"
         :title="carousel.primary.title"
@@ -169,6 +169,13 @@ export default {
   head({ $prismic }) {
     return {
       title: $prismic.asText(this.title).replace(/(<([^>]+)>)/gi, ''),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: $prismic.asText(this.docs.meta_description),
+        },
+      ],
     }
   },
 }
