@@ -316,7 +316,7 @@
       }
 
       &-text {
-        position: unset;
+        position: absolute;
         bottom: $unit;
         left: 0;
         width: 100%;
@@ -335,8 +335,9 @@
          & p {
           font-size: $h4;
           text-align: center;
-          color: $color_grey;
-          margin: 0;
+          color: $color_grey_dark;
+          margin: 0 auto;
+          width: 60ch;
 
           @media only screen and(max-width:$bp-1000) {
             font-size: $h4;

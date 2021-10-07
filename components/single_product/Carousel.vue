@@ -124,9 +124,11 @@ export default {
 
       for (let i = 0; i < shortcuts.length; i++) {
         shortcuts[i].classList.remove('active')
+        slider.children[i].classList.remove('active')
       }
 
       shortcuts[currentSlide].classList.add('active')
+      slider.children[currentSlide].classList.add('active')
     }
 
     function linkShortcuts() {

@@ -6,12 +6,12 @@
           <h2>{{ $prismic.asText(pillarInfo.section_title) }}</h2>
           <hr />
           <div class="pillar-renderer-content-cta-container">
-            <nuxt-link
-              v-if="
-                pillarInfo.section_title[0].text === 'Finished Medical Devices'
-              "
+            <a
+              v-if="pillarInfo.downloadable_link_text[0].text !== ''"
+              :href="pillarInfo.downloadable.url"
+              target="_blank"
               to="#"
-              >Product Portfolio</nuxt-link
+              >{{ $prismic.asText(pillarInfo.downloadable_link_text) }}</a
             >
             <nuxt-link :to="localePath(`/${pillarInfo.section_link.uid}`)">
               {{ $prismic.asText(pillarInfo.section_link_text) }}

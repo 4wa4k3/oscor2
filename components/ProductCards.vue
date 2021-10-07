@@ -16,7 +16,7 @@
               }"
             ></div>
             <div class="product-cards-content-container-content">
-              <h2>{{ $prismic.asText(card.name) }}</h2>
+              <h2 ref="titles">{{ $prismic.asText(card.name) }}</h2>
               <!-- <div class="french-sizes-container"></div> -->
               <nuxt-link
                 :to="
@@ -54,6 +54,16 @@ export default {
   },
   mounted() {
     const cards = this.$refs.cards
+    const cardTitles = this.$refs.titles
+
+    function getMaxheight(elem) {
+      let elemHeight = -1
+      elem.forEach((e) => {
+        elemHeight = Math.max(elemHeight, e.offsetHeight)
+      })
+      return elemHeight
+    }
+
     if (cards) {
       cards.forEach(function (elem, index) {
         const circle = elem.childNodes[0]
@@ -61,21 +71,18 @@ export default {
         const content = elem.childNodes[4]
 
         content.children[1].style.visibility = 'hidden'
-        content.style.bottom = `-${
-          (content.children[1].clientHeight + 60) / 16
-        }em`
+
+        content.style.bottom = `-${getMaxheight(cardTitles) - 80}px`
 
         window.addEventListener('resize', () => {
-          content.style.bottom = `-${
-            (content.children[1].clientHeight + 60) / 16
-          }em`
+          content.style.bottom = `-${getMaxheight(cardTitles) - 80}px`
         })
 
         elem.addEventListener('mouseover', function (e) {
           circle.classList.add('over')
           product.classList.add('shrink')
           content.classList.add('slide-up')
-          content.style.bottom = `${0}em`
+          content.style.bottom = `${0}px`
           content.children[1].style.visibility = 'visible'
         })
 
@@ -83,9 +90,7 @@ export default {
           circle.classList.remove('over')
           product.classList.remove('shrink')
           content.classList.remove('slide-up')
-          content.style.bottom = `-${
-            (content.children[1].clientHeight + 60) / 16
-          }em`
+          content.style.bottom = `-${getMaxheight(cardTitles) - 80}px`
           content.children[1].style.visibility = 'hidden'
         })
       })

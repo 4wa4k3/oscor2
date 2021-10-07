@@ -8,18 +8,28 @@
             class="product-cards-container"
             :style="{ backgroundColor: card.primary.color }"
           >
-            <div class="product-cards-circle"></div>
+            <div class="product-cards-circle">
+              <span
+                v-if="card.primary.new_product"
+                ref="newTag"
+                class="product-cards-circle--new-tag"
+                >NEW</span
+              >
+              <span v-else></span>
+            </div>
             <div
               class="product-cards-content-container"
               :style="{ backgroundImage: `url(${card.primary.image.url})` }"
             ></div>
-            <div class="product-cards-content-container-content">
+            <div ref="content" class="product-cards-content-container-content">
               <h2
-                ref="title"
+                ref="titles"
                 v-html="$prismic.asText(card.primary.product_name)"
               ></h2>
-              <h3>{{ $prismic.asText(card.primary.product_subtext) }}</h3>
-              <div class="french-sizes-container">
+              <h3 ref="subtitles">
+                {{ $prismic.asText(card.primary.product_subtext) }}
+              </h3>
+              <div ref="frenchSizes" class="french-sizes-container">
                 <template v-for="(fsize, index) in card.items">
                   <div
                     v-if="fsize.color !== null"
@@ -34,6 +44,7 @@
                 </template>
               </div>
               <nuxt-link
+                ref="link"
                 :to="
                   localePath({
                     name: `division-category-product`,
@@ -46,20 +57,6 @@
                 "
                 >{{ $prismic.asText(card.primary.link_text) }}</nuxt-link
               >
-              <!-- <nuxt-link
-            v-if="$route.params.division === 'medical-components'"
-            :to="
-              localePath({
-                name: `division-category-component`,
-                params: {
-                  division: $route.params.division,
-                  category: $route.params.category,
-                  component: card.primary.link.uid,
-                },
-              })
-            "
-            >{{ $prismic.asText(card.primary.link_text) }}</nuxt-link
-          > -->
             </div>
           </div>
         </div>
@@ -85,11 +82,33 @@ export default {
   mounted() {
     // Animate the cards
     const cards = this.$refs.cards
+    const cardContent = this.$refs.content
+    // const cardTitles = this.$refs.titles
+    // const cardSubTitles = this.$refs.subtitles
+    // const link = this.$refs.link
+    const frenchSizes = this.$refs.frenchSizes
+    const contentHeight = `-${getMaxheight(frenchSizes)}px`
+
+    function getMaxheight(elem) {
+      let elemHeight = -1
+      elem.forEach((e) => {
+        elemHeight = Math.max(elemHeight, e.offsetHeight)
+      })
+      return elemHeight
+    }
+    console.log(
+      getMaxheight(cardContent),
+      `frenchSizes is: ${getMaxheight(frenchSizes)}`
+    )
+
     if (cards) {
       cards.forEach(function (elem, index) {
         const circle = elem.childNodes[0]
+        // const newTag = circle.childNodes[0]
         const product = elem.childNodes[2]
         const content = elem.childNodes[4]
+        const link = content.children[3]
+
         const sup = content.getElementsByTagName('sup')
         if (sup) {
           for (let i = 0; i < sup.length; i++) {
@@ -97,47 +116,49 @@ export default {
             sup[i].style.textDecoration = 'none'
           }
         }
+        // maintain scale of New product tags
+        function newTag(tag, event) {
+          if (
+            tag.classList.contains('product-cards-circle--new-tag') &&
+            event === 'mouseenter'
+          ) {
+            tag.classList.add('over')
+          } else if (
+            tag.classList.contains('product-cards-circle--new-tag') &&
+            event === 'mouseleave'
+          ) {
+            tag.classList.remove('over')
+          }
+        }
 
         content.children[2].style.visibility = 'hidden'
-        content.style.bottom = `-${
-          (content.children[2].clientHeight +
-            content.children[3].clientHeight +
-            100) /
-          16
-        }em`
+        link.style.transform = 'translateY(55px)'
+
+        content.style.height = `${getMaxheight(cardContent)}px`
+        content.style.bottom = contentHeight
 
         window.addEventListener('resize', () => {
-          content.style.bottom = `-${
-            (content.children[2].clientHeight +
-              content.children[3].clientHeight +
-              100) /
-            16
-          }em`
+          content.style.bottom = contentHeight
         })
 
-        elem.addEventListener('mouseover', function (e) {
+        elem.addEventListener('mouseenter', function (e) {
           circle.classList.add('over')
+          newTag(circle.childNodes[0], e.type)
           product.classList.add('shrink')
           content.classList.add('slide-up')
-          content.style.bottom = `${0}em`
+          content.style.bottom = `${0}px`
+          link.style.transform = 'translateY(0)'
           content.children[2].style.visibility = 'visible'
-          // circle.style.background = 'radial-gradient(#323233, #7D7D80)'
-          // circle.style.transition = 'background-color 0.3s'
         })
 
-        elem.addEventListener('mouseout', function (e) {
+        elem.addEventListener('mouseleave', function (e) {
           circle.classList.remove('over')
+          newTag(circle.childNodes[0], e.type)
           product.classList.remove('shrink')
           content.classList.remove('slide-up')
+          link.style.transform = 'translateY(55px)'
           content.children[2].style.visibility = 'hidden'
-          content.style.bottom = `-${
-            (content.children[2].clientHeight +
-              content.children[3].clientHeight +
-              100) /
-            16
-          }em`
-          // circle.style.background = 'radial-gradient(#fff, #fff)'
-          // circle.style.transition = 'background-color 0.3s'
+          content.style.bottom = contentHeight
         })
       })
     }

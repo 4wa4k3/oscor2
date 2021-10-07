@@ -7,10 +7,10 @@
       </div>
       <div class="top-nav__cart-container">
         <!-- <LangNav /> -->
-        <SearchBtn />
+        <!-- <SearchBtn /> -->
       </div>
     </div>
-    <SearchForm />
+    <!-- <SearchForm /> -->
   </header>
 </template>
 <script>
@@ -18,15 +18,15 @@ import { mapGetters } from 'vuex'
 import Logo from '~/components/Logo'
 import MenuButton from '~/components/MenuButton'
 // import LangNav from '~/components/LangNav'
-import SearchBtn from '~/components/search/SearchBtn'
-import SearchForm from '~/components/search/SearchForm'
+// import SearchBtn from '~/components/search/SearchBtn'
+// import SearchForm from '~/components/search/SearchForm'
 export default {
   components: {
     Logo,
     MenuButton,
     // LangNav,
-    SearchBtn,
-    SearchForm,
+    // SearchBtn,
+    // SearchForm,
   },
   data() {
     return {
